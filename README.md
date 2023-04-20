@@ -1,0 +1,1 @@
+# Lipkin-Model-FYS5419
