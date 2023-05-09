@@ -1,0 +1,34 @@
+
+\subsection{Hamiltonians}
+\subsubsection{Lipkin Model}
+For larger many-body systems, the introduction of the occupation representation is common. The creation of a state $p$ is represented by the operator $\crt{p}$, while annihilation $\ani{p}$. Since we are dealing with fermions, the creation and annihilation operators follow the canonical anitcommutation relations
+\begin{align}
+    \set{\crt{p},\crt{q}} = \set{\ani{p},\ani{q}} = 0, \hspace{10px}\set{\crt{p},\ani{q}} = \delta_{pq}. 
+    \label[eq]{eq:theo:car_algebra}
+\end{align}
+The Lipkin model Hamiltonian can be written using creation and annihilation operators as 
+\begin{align}
+    \begin{split}\label[eq]{eq:theo:lipkin_second_quant_hamiltonian}
+    H &= H_0 + H_1 + H_2 \\
+    H_0 &= \frac{1}{2}\epsilon \sum_{pq} \sigma \crt{p\sigma} \ani{p\sigma} \\
+    H_1 &= \frac{1}{2}V \sum_{pp'\sigma} \crt{p\sigma}\crt{p'\sigma}\ani{p'\bar{\sigma}}\ani{p\bar{\sigma}} \\
+    H_2 &= \frac{1}{2}W \sum_{pp'\sigma} \crt{p\sigma} \crt{p'\bar{\sigma}} \ani{p'\sigma} \ani{p\bar{\sigma}}
+    \end{split}
+\end{align}
+With $\bar{\sigma} = -\sigma$. By defining the \textit{quasi-spin} operators $J_\pm , J_z, J^2$ in addition to the number operator $N$ as 
+\begin{align}
+    \begin{split}\label[eq]{eq:theo:quasi_spin_definitions}
+        J_\pm = \sum_p \crt{p\pm}\ani{p\mp} \\
+        J_z = \frac{1}{2}\sum_{p\sigma} \sigma \crt{p\sigma} \ani{p\sigma} \\
+        J^2 = J_+ J_- + J_z^2 - J_z \\
+        N = \sum_{p\sigma} \crt{p\sigma} \ani{p\sigma}
+    \end{split}
+\end{align}
+we can rewrite the Lipkin Hamiltonian from \cref{eq:theo:lipkin_second_quant_hamiltonian} using these
+\begin{align}
+    \begin{split} \label[eq]{eq:theo:lipkin_quasispin_hamiltonian}
+        H_0 &= \epsilon J_z \\
+        H_1 &= \frac{1}{2}V (J_+^2 + J_-^2) \\
+        H_2 &= \frac{1}{2}W ( \set{J_+ , J_- } - N ) 
+    \end{split}
+\end{align}

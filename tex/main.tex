@@ -1,4 +1,4 @@
-\documentclass[onecolumn,english,notitlepage]{article}  
+\documentclass[twocolumn,english,notitlepage]{article}  
 \usepackage[margin=2cm]{geometry}
 
 % \setlength{\parindent}{0pt} % no indents
@@ -12,12 +12,14 @@
 
 \begin{document}
 
-
-\maketitle
-\begin{abstract}
-    Abstract stuff
-\end{abstract}
-
+\twocolumn[
+    \begin{@twocolumnfalse}
+        \maketitle
+        \begin{abstract}
+        Heiie            
+        \end{abstract}
+    \end{@twocolumnfalse}
+]
 
 
 \section{Introduction}
