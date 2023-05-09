@@ -9,10 +9,10 @@ For larger many-body systems, the introduction of the occupation representation 
 The Lipkin model Hamiltonian can be written using creation and annihilation operators as 
 \begin{align}
     \begin{split}\label[eq]{eq:theo:lipkin_second_quant_hamiltonian}
-    H &= H_0 + H_1 + H_2 \\
-    H_0 &= \frac{1}{2}\epsilon \sum_{pq} \sigma \crt{p\sigma} \ani{p\sigma} \\
-    H_1 &= \frac{1}{2}V \sum_{pp'\sigma} \crt{p\sigma}\crt{p'\sigma}\ani{p'\bar{\sigma}}\ani{p\bar{\sigma}} \\
-    H_2 &= \frac{1}{2}W \sum_{pp'\sigma} \crt{p\sigma} \crt{p'\bar{\sigma}} \ani{p'\sigma} \ani{p\bar{\sigma}}
+    H &= H_0 + H_1 + H_2, \\
+    H_0 &= \frac{1}{2}\epsilon \sum_{pq} \sigma \crt{p\sigma} \ani{p\sigma}, \\
+    H_1 &= \frac{1}{2}V \sum_{pp'\sigma} \crt{p\sigma}\crt{p'\sigma}\ani{p'\bar{\sigma}}\ani{p\bar{\sigma}}, \\
+    H_2 &= \frac{1}{2}W \sum_{pp'\sigma} \crt{p\sigma} \crt{p'\bar{\sigma}} \ani{p'\sigma} \ani{p\bar{\sigma}}.
     \end{split}
 \end{align}
 With $\bar{\sigma} = -\sigma$. By defining the \textit{quasi-spin} operators $J_\pm , J_z, J^2$ in addition to the number operator $N$ as 
@@ -27,8 +27,20 @@ With $\bar{\sigma} = -\sigma$. By defining the \textit{quasi-spin} operators $J_
 we can rewrite the Lipkin Hamiltonian from \cref{eq:theo:lipkin_second_quant_hamiltonian} using these
 \begin{align}
     \begin{split} \label[eq]{eq:theo:lipkin_quasispin_hamiltonian}
-        H_0 &= \epsilon J_z \\
-        H_1 &= \frac{1}{2}V (J_+^2 + J_-^2) \\
-        H_2 &= \frac{1}{2}W ( \set{J_+ , J_- } - N ) 
+        H_0 &= \epsilon J_z, \\
+        H_1 &= \frac{1}{2}V (J_+^2 + J_-^2), \\
+        H_2 &= \frac{1}{2}W ( \set{J_+ , J_- } - N ),
     \end{split}
 \end{align}
+These quasi spin operators obey the normal spin commutator relations
+\begin{align*}
+    &\commutator{J_z}{J_\pm} = \pm J_\pm, 
+    &\commutator{J_+}{J_-} = 2 J_z, \\
+    &\commutator{J^2}{J_\pm} = 0,
+    &\commutator{J^2}{J_z} = 0,
+\end{align*}
+in addition to commuting with the number operator
+\begin{align*}
+    \commutator{N}{J_z} = \commutator{N}{J_\pm} = \commutator{N}{J^2} = 0.
+\end{align*}
+Using these relations we can show that the Hamiltonian (a product of quasi spin operators and the number operator) also commutes with  $J^2$, that is $\commutator{H}{J^2}=0$. Therefor $H$ and $J^2$ have shared eigenstates, with $J$ being a `good` quantum number.
