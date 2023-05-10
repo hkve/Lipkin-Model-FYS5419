@@ -52,6 +52,27 @@ Using spin-eigenstates as the Hamiltonian basis, we define states through the no
 \end{align*}
 Using this basis for the quasi-spin Hamiltonian from \cref{eq:theo:lipkin_quasispin_hamiltonian}, the explicit matrix $H_{J_z,J'_z} = \bra{J,J_z} H \ket{J,J_z'}$ can be constructed.
 
+\comment{Rekkefølgen følger $\bra{J,-J} H \ket{J, -J}$ som $H_{0,0}$, motsatt av artikkelen}
+
+\comment{Her med $W$, tror Morten har surra litt og her brukt hamiltonen $H = H_0 - H_1 - H_2$ samt uten $N$ operator}
+\begin{align}
+    H = \begin{pmatrix}
+        -(\epsilon-W) & 0 & -V \\
+        0 & -2W & 0 \\
+        -V & 0 & \epsilon - W
+    \end{pmatrix}
+\end{align}
+
+\comment{med $H = H_0 + H_1 + H_2$ og $N$ inkludert}
+\begin{align}
+    H = \begin{pmatrix}
+        -\epsilon & 0 & -V \\
+        0 & -W & 0 \\
+        -V & 0 & \epsilon
+    \end{pmatrix}
+\end{align}
+
+\comment{$J=2$ er good med $H = H_0 + H_1 + H_2$}
 \begin{align}
     H = \begin{pmatrix}
         -\epsilon & 0  & \sqrt{6}V &0 &0 \\
