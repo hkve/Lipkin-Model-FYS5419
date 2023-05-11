@@ -9,10 +9,10 @@ def make_figs_path(filename):
     cur_path = pl.Path(__file__)
     root_path = cur_path
 
-    while root_path.name != "FYS-STK4155":
+    while root_path.name != "Lipkin-Model-FYS5419":
         root_path = root_path.parent
 
-    figs_path = root_path / pl.Path("Project3/tex/figs")
+    figs_path = root_path / pl.Path("tex/figs")
 
     if not figs_path.exists():
         return None
