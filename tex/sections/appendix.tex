@@ -1,0 +1,25 @@
+\section{Pauli Encoding}\label[sec]{sec:app:pauliencoding_detailed}
+We will now convert \cref{eq:theo:quasi_spin_definitions} to \cref{eq:met:lipkin_pauli_hamiltonian} using the spin mappings from \cref{eq:met:quasispin_to_onebody_mapping} and \cref{eq:met:onebody_to_pauli_mapping}. The diagonal term $H_0$ is quite simple, where we simply substitute in for the $z$ spin giving
+
+\begin{align*}
+    H_0 = \epsilon J_z = \epsilon \sum_{p} \spinsmall{z}{p} = \frac{\epsilon}{2} \sum_p Z_p
+\end{align*}
+Moving on to the $H_1$ term, we need to expand the square of the $J_\pm$ operators. Starting with $J_+$ we find
+\begin{align}
+    J_+^2 &= \pclosed{\sum_p \spinsmall{x}{p} + i\spinsmall{y}{p}}^2 = \sum_{pq}\pclosed{\spinsmall{x}{p} + i\spinsmall{y}{p}}\pclosed{\spinsmall{x}{q} + i\spinsmall{y}{q}} \nonumber\\
+    &= \sum_{pq} \spinsmall{x}{p}\spinsmall{x}{q} - \spinsmall{y}{p}\spinsmall{y}{q} + i\spinsmall{y}{p}\spinsmall{x}{q} + i\spinsmall{x}{p}\spinsmall{y}{q} \label[eq]{eq:app:jpluss_square_expanded}
+\end{align}
+Similarly, the $J_-^2$ term yields
+\begin{align}
+    J_-^2 = \sum_{pq} \spinsmall{x}{p}\spinsmall{x}{q} - \spinsmall{y}{p}\spinsmall{y}{q} - i\spinsmall{y}{p}\spinsmall{x}{q} - i\spinsmall{x}{p}\spinsmall{y}{q}. \label[eq]{eq:app:jminus_square_expanded}
+\end{align}
+By inspection we see that the cross terms of \cref{eq:app:jpluss_square_expanded} and \cref{eq:app:jminus_square_expanded} cancel each other. We can then expand in diagonal and off-diagonal terms and substitute in the mapping from \cref{eq:met:onebody_to_pauli_mapping}.
+\begin{align*}
+    J_+^2 + J_-^2 &= 2\sum_{pq} \spinsmall{x}{p}\spinsmall{x}{q} - \spinsmall{z}{p}\spinsmall{z}{q} \\
+    &= 2 \sum_p (\spinsmall{x}{p})^2 - (\spinsmall{y}{p})^2 + 4\sum_{p > q} \spinsmall{x}{p}\spinsmall{x}{q} - \spinsmall{y}{p}\spinsmall{y}{q} \\
+    &= \frac{1}{2} \sum_p X_p^2 - Y_p^2 + \sum_{p > q} X_p X_q - Y_p Y_q
+\end{align*}
+The diagonal term will cancel out, since the Pauli matrices are involutory, giving the pair moving Hamiltonian
+\begin{align*}
+    H_1 = \frac{1}{2}V \sum_{p > q} X_p X_q - Y_p Y_q 
+\end{align*}

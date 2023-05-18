@@ -1,0 +1,17 @@
+\subsection{Pauli Encoding the Lipkin Model}
+Using the level mapping \comment{introduce the mappings?}, the spin operators from \cref{eq:theo:quasi_spin_definitions} can be written using their one-body counterparts as 
+\begin{align}
+    J_z = \sum_{i}^{N} \spinsmall{z}{i} \hspace{20px} J_\pm = \sum_i^N \spinsmall{\pm}{i} = \sum_i^N (\spinsmall{x}{i}\pm i\spinsmall{y}{i}) \label[eq]{eq:met:quasispin_to_onebody_mapping}
+\end{align}
+with $N$ being the number of particles. Additionally, since we have spin-$\sfrac{1}{2}$ fermions, the mapping to Pauli matrices follow
+\begin{align}
+    \spinsmall{x}{i} = \frac{1}{2}X_i,\hspace{20px}\spinsmall{y}{i} = \frac{1}{2}Y_i,\hspace{20px}\spinsmall{z}{i} = \frac{1}{2}Z_i. \label[eq]{eq:met:onebody_to_pauli_mapping}
+\end{align}
+As shown in \cref{sec:app:pauliencoding_detailed}, \cref{eq:theo:lipkin_quasispin_hamiltonian} can be expressed as
+\begin{align}
+    \begin{split}\label[eq]{eq:met:lipkin_pauli_hamiltonian}
+        H_0 &= \frac{\epsilon}{2}\sum_{p}Z_p  \\
+        H_1 &= \frac{1}{2}V \sum_{p < q} X_p X_q - Y_p Y_q \\
+        H_2 &= \frac{1}{2}W \sum_{p < q} \pclosed{ X_p X_q + Y_p Y_q } - \frac{1}{2}W 
+    \end{split}
+\end{align}
