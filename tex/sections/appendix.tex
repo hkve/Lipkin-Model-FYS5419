@@ -1,3 +1,49 @@
+\section{$J=1$ Lipkin Hamiltonian}\label[sec]{sec:app:lipkin_spin_one_hamiltonian}
+Since we have expressed the Hamiltonian using quasi-spin operators, investigating how the states $\ket{J, J_z}$ are related to each other will be beneficial. For $J=1$ ($N=2$) we can write the $J_z = \pm 1$ states as
+
+\begin{align*}
+    \ket{1,\pm 1} = \crt{1\pm}\crt{2\pm}\ket{0}
+\end{align*}
+The states are related to each other, in additon to the third $\ket{1,0}$ states through \cref{eq:theo:ladder_operations}.
+
+\begin{align*}
+    J_+ \ket{1,-1} &= \sqrt{2}\ket{1,0}\hspace{20px}&J_- \ket{1,-1} &= 0 \\
+    J_+ \ket{1,0} &= \sqrt{2}\ket{1,1} &J_- \ket{1,0} &= \sqrt{2}\ket{1,-1} \\
+    J_+ \ket{1,1} &= 0  &J_- \ket{1,1} &= \sqrt{2}\ket{1,0}
+\end{align*}
+Inspecting \cref{eq:theo:lipkin_quasispin_hamiltonian} we see that $H_0$ only acts on the diagonal
+\begin{align*}
+    \bra{J,J_z} H_0 \ket{J,J_z'} = \epsilon J_z \delta_{J_z,J_z'}
+\end{align*} 
+In addition, the pair mover, as the name entails, only if there are states differing by two units of angular momentum since $H_1$ contains $J_\pm^2$. We see that
+
+\begin{align*}
+    \bra{J,J_z} H_1 \ket{J,J_z \pm 2} &= \frac{1}{2}V \bra{J,J_z} J_\mp^2 \ket{J,J_z \pm 2} \\
+    &= \frac{1}{2}V (\sqrt{2})^2 \bra{J,J_z}\ket{J,J_z} = V
+\end{align*}
+Lastly $H_2$ have $J_\pm J_\mp$  and $N$ terms contributing for all diagonal terms. For $\ket{1,\pm 1}$, these cancel out since
+
+\begin{align*}
+    \bra{1,\pm 1} J_\pm J_\mp \ket{1,\pm 1} &= 2 \\
+    \bra{1,\pm 1} N \ket{1,\pm 1} &= 2
+\end{align*}
+But for $\ket{1,0}$ we get a contribution from both $J_+J_-$ and $J_-J_+$, giving a total contribution off
+
+\begin{align*}
+    \bra{1,0} H_2 \ket{1,0} &= \frac{1}{2}W\bra{1,0} J_+ J_- + J_- J_+ - N \ket{1,0} \\
+    &= \frac{1}{2}W (2 + 2 - 2) = W
+\end{align*}
+Combining these results we find 
+
+\begin{align*}
+    H = \begin{pmatrix}
+        -\epsilon & 0 & V \\
+        0 & W & 0 \\
+        V & 0 & \epsilon
+    \end{pmatrix}
+\end{align*}
+Ordered such that $\bra{J,J_z} H \ket{J,J_z'} = H_{J_z+1,J_z'+1}$
+
 \section{Pauli Encoding}\label[sec]{sec:app:pauliencoding_detailed}
 We will now convert \cref{eq:theo:quasi_spin_definitions} to \cref{eq:met:lipkin_pauli_hamiltonian} using the spin mappings from \cref{eq:met:quasispin_to_onebody_mapping} and \cref{eq:met:onebody_to_pauli_mapping}. The diagonal term $H_0$ is quite simple, where we simply substitute in for the $z$ spin giving
 
@@ -23,3 +69,4 @@ The diagonal term will cancel out, since the Pauli matrices are involutory, givi
 \begin{align*}
     H_1 = \frac{1}{2}V \sum_{p > q} X_p X_q - Y_p Y_q 
 \end{align*}
+\comment{Can do same for $H_2$ to include $W$ but does not get correct result, will have to check the math before texing.}
