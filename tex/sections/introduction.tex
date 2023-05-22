@@ -1,6 +1,10 @@
-
-\begin{align}
-    F = ma \label[eq]{eq:test}
-\end{align}
-
-\cref{eq:test}, QC lipkin: \citep{hlatshwayoSimulatingExcitedStates2022}
+\section{Introduction (men antagelig alt for basic)}
+Quantum Mechanics (QM) is fundamentally hard, seeing as it has intrinsic uncertainties within, proclaimed by fundamental quantum theorems such as the Heisenberg Uncertainty Principle. Particles at such minuscule scales are not defined through classical physics, but as waves and wave-functions. To physically interpret the position and momentum of said particles need to be assessed as probability distributions. Thus it is manifestly encoded in the fabric of QM that it contains a certain amount of probabilistic features inherently in the fact that particles can not be expressed classically, but rather as states which develop. 
+\newline\newline
+For a Quantum Computer (QC) to be stern and act according to the probabilistic nature of the QM realm, we need to encode each bit as a state. This requires a short introduction to Classical Computing (CC). Here, the foundation of a circuit is a rigid state, 0 or 1, which can be altered, but which remain unaltered without external signals. One can operate on these bits, often system of bits, with gates such as OR and AND, and a plethora of more operations, which creates an outcome based on whether your selection of bits are in a state 0 or 1. 
+\newline\newline
+Comparing this CC to a QC, the encoding is still for QC bound by having bits of values 0 or 1, although here the similarities end. Each quantum state will in an ideal world not diverge from its original value, but seeing at it is probabilistic, it will evolve and fluctuate between 0 and 1. For the sake of simplicity, we assume and ideal world where it remains in its encoded state. Each operation on the state or the collection of states has to be unitary, to retain reversibility. And most importantly, states can be in a superposition of 0 and 1, making the outcome reliant on lots of runs, seeing as the outcome is probabilistic. Two or more states can also be entangled, in a manner at which predicts with certainty the outcome of the first bit, based on the measurement on the second. These properties makes QC capable of, through different encoding and operating schemes, to solve some problems within computing better than its classical counterpart. 
+\newline\newline
+\textbf{This is the part where I introduce our hamiltonian problem.}
+\subsection{Dårlig intro som kan taes med om vi er kritisk}
+There are lots of questions within the realm of Quantum Computing (QC). Most of them are never answered, due to, more or less, our inability to discover the true nature of quantum mechanics, and our ability to predict future breakthroughs. Questions about the feasibility of applying QC to problems ranging from NP-hard classical problems to distinct quantum problems, such as computing energies of a quantum state are perpetually conjectured, but alas, the state of current QC schemes are lacking. This paper will in brief answer none of these questions, but apply the foundations of QC to further speculate.
