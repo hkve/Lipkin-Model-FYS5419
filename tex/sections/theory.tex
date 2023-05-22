@@ -1,5 +1,70 @@
+\subsection{Notation}
+Define 
+\begin{align}
+    \ket{0} = \begin{pmatrix}
+        1 \\
+        0
+    \end{pmatrix}, \ket{1} = \begin{pmatrix}
+        0 \\ 
+        1
+    \end{pmatrix}
+\end{align}
+
+\begin{align}
+    \ket{ij} = \ket{i} \otimes \ket{j}
+\end{align}
+
+\begin{align}
+    X = \begin{pmatrix}
+        0 & 1 \\
+        1 & 0
+    \end{pmatrix}, Y = \begin{pmatrix}
+        0 & -i \\
+        i & 0
+    \end{pmatrix}, Z = \begin{pmatrix}
+        1 & 0 \\
+        0 & -1
+    \end{pmatrix}
+\end{align}
 
 \subsection{Hamiltonians}
+\subsubsection{$H \in \mathbb{R}^2$ Hamiltonian}
+As an initial test, we will consider a simply $2\times 2$ real Hamiltonian consistend of a diagonal part $H_0$ and off-diagonal part $H_I$, playing the roles of a non-interactive one-body and interactive two-body part respectively. Defined through their matrix elements, we express them in the Pauli basis $\set{\ket{0},\ket{1}}$
+
+\begin{align}
+    \begin{split} \label[eq]{eq:theo:2times2_hamiltonian}
+        H &= H_0 + H_I \\
+        H_0 = \begin{pmatrix}
+            E_1 & 0 \\
+            0 & E_2
+        \end{pmatrix}&, \hspace{20px}
+        H_I = \lambda \begin{pmatrix}
+            V_{11} & V_{12} \\
+            V_{21} & V_{22}
+        \end{pmatrix}
+    \end{split}
+\end{align}
+Where $\lambda \in [0,1]$ is a coupling constant parameterizing the strength of the interaction. 
+
+\subsubsection{$H \in \mathbb{R}^4$ Hamiltonian}
+We now move on to a slightly larger system, defined as a $4 \times 4$ real Hamiltonian. This can be viewed as two  composite systems where each system is a two-level system. In the product basis $\set{\ket{00},\ket{01},\ket{10},\ket{11}}$ we define the one-body part as 
+\begin{align}
+    H_0 \ket{ij} = \epsilon_{ij}\ket{ij}, \label[eq]{eq:theo:4times4_diagonal_hamiltonian}
+\end{align}
+with a two-body interaction defined using Pauli matricies
+\begin{align}
+    \begin{split} \label[eq]{eq:theo:4times4_interaction}
+        H_I &= H_x X \otimes X + H_z Z \otimes Z \\
+        &= \begin{pmatrix}
+            H_z & 0 & 0 & H_z \\
+            0 & - H_z & H_x & 0 \\
+            0 & H_x & - H_z & 0 \\
+            H_x & 0 & 0 & H_z
+        \end{pmatrix}
+    \end{split}
+\end{align}
+Where $H_x$ and $H_y$ are couplings playing the same role as $\lambda$.
+
 \subsubsection{Lipkin Model}
 For larger many-body systems, the introduction of the occupation representation is common. The creation of a state $p$ is represented by the operator $\crt{p}$, while annihilation $\ani{p}$. Since we are dealing with fermions, the creation and annihilation operators follow the canonical anitcommutation relations
 \begin{align}
