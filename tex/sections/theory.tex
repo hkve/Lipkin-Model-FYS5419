@@ -27,6 +27,22 @@ Define
     \end{pmatrix}
 \end{align}
 
+\section{Basic Quantum Computing}
+In the introduction, vague outlines of the functionality of QC is presented. In this section, the circuits and representation will be presented with a elementary example of circuits and states. A Greenberger-Horne-Zeilinger(GHZ) State is a  fully entangled set of three or more quantum bits, or qbits. It can be encoded by applying a Haddamard gate to the primary gate, and CNOT gates to the subsequent. In matrix representation these operations are
+\begin{equation}
+    H = \begin{pmatrix}
+    1 & 1 \\
+    1 & -1 
+    \end{pmatrix} \qquad 
+    CNOT = \begin{pmatrix}
+    1 & 0 & 0 & 0 \\
+    0 & 1 & 0 & 0 \\
+    0 & 0 & 0 & 1 \\
+    0 & 0 & 1 & 0 
+    \end{pmatrix}
+\end{equation}
+Hadamard gates changes the basis of the gate between Pauli Z and Pauli X basis. CNOT changes the affected gate, based on the state of the control state. Visually, in a circuit, this can be presented as shown in Fig(\ref{} VIS TIL SØT CIRCUIT). The result is a full entanglement, where the outcome of any measurement on any qbit, will ascertain the outcome of all other measurements, as shown in Fig(\ref{} HER KAN VI VISE TIL EN AV DE ANDRE RARE PLOTA).
+
 \subsection{Hamiltonians}
 \subsubsection{$H \in \mathbb{R}^2$ Hamiltonian}
 As an initial test, we will consider a simply $2\times 2$ real Hamiltonian consistend of a diagonal part $H_0$ and off-diagonal part $H_I$, playing the roles of a non-interactive one-body and interactive two-body part respectively. Defined through their matrix elements, we express them in the Pauli basis $\set{\ket{0},\ket{1}}$
