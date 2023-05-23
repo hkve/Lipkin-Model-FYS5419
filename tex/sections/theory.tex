@@ -161,3 +161,10 @@ The Rayleig-Ritz Variational Method claims that for a given Hamiltonian operator
     \frac{\bra{a}\boldsymbol{H}\ket{a}}{\braket{a}} \geq E_0
 \end{equation}
 This is a crucial method in perturbation theory, as it allows for the ability to approximate the lower bounds of the lowest eigenvalue of the Hamiltonian. It is the essential principle of the Variational Quantum Eigensolver. 
+
+\section{Variational Quantum Eigensolver}
+The Variational Quantum Eigensolver(VQE) takes on applying the Variational Principle, described above, minimizing the energy of 
+\begin{equation}\label{VQE}
+    E_{temp} = \frac{\bra{a}\boldsymbol{H}\ket{a}}{\braket{a}}
+\end{equation}
+with regards to altering the state $\ket{a}$. This is achieved by applying an ansatz to the initial state, in order to get an output eigenvalue, which further can be minimized. The ansatz takes \textit{n} Quantum Bits (qbits) and \textit{n} free parameters, $\theta_i$. The goal of the algorithm is to alter the parameters $\theta_i$ in order to achieve the optimal the minimal energy of the system, as computed in Eq. (\ref{VQE}). A schematic of the process is shown in Fig(\ref{}). The ansatz conjectured by Hlatshwayo et al. \cite{} is shown in Fig. (\ref{}). 
