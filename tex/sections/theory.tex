@@ -154,3 +154,10 @@ To apply a specific system to VQE, the Hamiltonian must be re-written in terms o
     H = \sum_i w_i P_i \label[eq]{eq:theo:pauli_encoding_general}
 \end{align}
 For a general two-body Hamiltonian, this task can serve challenging. Many schemes exists for this purpose, such as the Jordan-Wigner transformation \citep{steudtnerMethodsSimulateFermions2019}. For the Lipkin model, an easier approach is available since the Hamiltonian can be written as products of the number and spin operators.
+
+\subsection{Variational Principle}
+The Rayleig-Ritz Variational Method claims that for a given Hamiltonian operator, \textbf{H}, the expectation value of a given state has a lower bound on the energy $E_0$, such that
+\begin{equation}
+    \frac{\bra{a}\boldsymbol{H}\ket{a}}{\braket{a}} \geq E_0
+\end{equation}
+This is a crucial method in perturbation theory, as it allows for the ability to approximate the lower bounds of the lowest eigenvalue of the Hamiltonian. It is the essential principle of the Variational Quantum Eigensolver. 
