@@ -38,8 +38,8 @@ def solve():
 def plot(lambdas, E1, E2, C_abs_E1, C_abs_E2):
     fig, ax = plt.subplots()
     cmap = plot_utils.cmap_terrain
-    ax.scatter(lambdas, E1, label=r"$E_0$", c=C_abs_E1, cmap=cmap)
-    ax.scatter(lambdas, E2, label=r"$E_1$", c=C_abs_E2, cmap=cmap)
+    ax.scatter(lambdas, E1, c=C_abs_E1, cmap=cmap)
+    ax.scatter(lambdas, E2, c=C_abs_E2, cmap=cmap)
     
     sm = plt.cm.ScalarMappable(cmap=cmap)
     sm.set_array(np.linspace(0,1,100))
@@ -61,9 +61,8 @@ def plot(lambdas, E1, E2, C_abs_E1, C_abs_E2):
     # axins.set_xticks([])
     axins.set_yticklabels([])
     mark_inset(ax, axins, loc1=1, loc2=4, fc="none", ec="0.5")
-    
-    # ax.legend(loc="upper center", ncol=2, bbox_to_anchor=(0.55,1.15))
-    ax.legend()
+    ax.annotate(r"$E_0$", xy=(0.05,4), xytext=(0.2, 4), arrowprops=dict(facecolor="gray", shrink=0.05), fontsize=15, verticalalignment="center")
+    ax.annotate(r"$E_1$", xy=(0.05,0), xytext=(0.2, 0), arrowprops=dict(facecolor="gray", shrink=0.05), fontsize=15, verticalalignment="center")
     plot_utils.save("chaning_character")
     plt.show()
 
