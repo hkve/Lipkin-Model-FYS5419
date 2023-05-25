@@ -1,50 +1,6 @@
-\subsection{Notation}
-Define 
-\begin{align}
-    \ket{0} = \begin{pmatrix}
-        1 \\
-        0
-    \end{pmatrix}, \ket{1} = \begin{pmatrix}
-        0 \\ 
-        1
-    \end{pmatrix}
-\end{align}
+This section will introduce the three relevant systems for this work. Initially we will look at two `toy models`, being $2\times2$ and $4 \times 4$ real Hamiltonians with arbitrary entries. Lastly the Lipkin model will be used, showing many of the key features of many-body systems while still being analytically solvable.   
 
-\begin{align}
-    \ket{ij} = \ket{i} \otimes \ket{j}
-\end{align}
-
-\begin{align}
-    X = \begin{pmatrix}
-        0 & 1 \\
-        1 & 0
-    \end{pmatrix}, Y = \begin{pmatrix}
-        0 & -i \\
-        i & 0
-    \end{pmatrix}, Z = \begin{pmatrix}
-        1 & 0 \\
-        0 & -1
-    \end{pmatrix}
-\end{align}
-
-\section{Basic Quantum Computing}
-In the introduction, vague outlines of the functionality of QC is presented. In this section, the circuits and representation will be presented with a elementary example of circuits and states. A Greenberger-Horne-Zeilinger(GHZ) State is a  fully entangled set of three or more quantum bits, or qbits. It can be encoded by applying a Haddamard gate to the primary gate, and CNOT gates to the subsequent. In matrix representation these operations are
-\begin{equation}
-    H = \begin{pmatrix}
-    1 & 1 \\
-    1 & -1 
-    \end{pmatrix} \qquad 
-    CNOT = \begin{pmatrix}
-    1 & 0 & 0 & 0 \\
-    0 & 1 & 0 & 0 \\
-    0 & 0 & 0 & 1 \\
-    0 & 0 & 1 & 0 
-    \end{pmatrix}
-\end{equation}
-Hadamard gates changes the basis of the gate between Pauli Z and Pauli X basis. CNOT changes the affected gate, based on the state of the control state. Visually, in a circuit, this can be presented as shown in Fig(\ref{} VIS TIL SØT CIRCUIT). The result is a full entanglement, where the outcome of any measurement on any qbit, will ascertain the outcome of all other measurements, as shown in Fig(\ref{} HER KAN VI VISE TIL EN AV DE ANDRE RARE PLOTA).
-
-\subsection{Hamiltonians}
-\subsubsection{$H \in \mathbb{R}^2$ Hamiltonian}
+\subsection{$H \in \mathbb{R}^2$ Hamiltonian}
 As an initial test, we will consider a simply $2\times 2$ real Hamiltonian consistend of a diagonal part $H_0$ and off-diagonal part $H_I$, playing the roles of a non-interactive one-body and interactive two-body part respectively. Defined through their matrix elements, we express them in the Pauli basis $\set{\ket{0},\ket{1}}$
 
 \begin{align}
@@ -62,7 +18,7 @@ As an initial test, we will consider a simply $2\times 2$ real Hamiltonian consi
 \end{align}
 Where $\lambda \in [0,1]$ is a coupling constant parameterizing the strength of the interaction. 
 
-\subsubsection{$H \in \mathbb{R}^4$ Hamiltonian}
+\subsection{$H \in \mathbb{R}^4$ Hamiltonian}
 We now move on to a slightly larger system, defined as a $4 \times 4$ real Hamiltonian. This can be viewed as two  composite systems where each system is a two-level system. In the product basis $\set{\ket{00},\ket{01},\ket{10},\ket{11}}$ we define the one-body part as 
 \begin{align}
     H_0 \ket{ij} = \epsilon_{ij}\ket{ij}, \label[eq]{eq:theo:4times4_diagonal_hamiltonian}
@@ -81,7 +37,7 @@ with a two-body interaction defined using Pauli matricies
 \end{align}
 Where $H_x$ and $H_y$ are couplings playing the same role as $\lambda$.
 
-\subsubsection{Lipkin Model}
+\subsection{Lipkin Model}
 For larger many-body systems, the introduction of the occupation representation is common. The creation of a state $p$ is represented by the operator $\crt{p}$, while annihilation $\ani{p}$. Since we are dealing with fermions, the creation and annihilation operators follow the canonical anitcommutation relations
 \begin{align}
     \set{\crt{p},\crt{q}} = \set{\ani{p},\ani{q}} = 0, \hspace{10px}\set{\crt{p},\ani{q}} = \delta_{pq}. 
@@ -164,23 +120,23 @@ Using this basis for the quasi-spin Hamiltonian from \cref{eq:theo:lipkin_quasis
     \end{pmatrix}
 \end{align}
 
-\subsection{Pauli Encoding Hamiltonians}
-To apply a specific system to VQE, the Hamiltonian must be re-written in terms of a sum of \textit{Pauli strings}. Considering the identity $I$ and the three Pauli matrices $X, Y, Z$, we construct a specific term as a tensor product of these $P_i$. For an $n$-qubit system, we require $n-1$ tensor products. Combined with a weight $w_i$, the Hamiltonian must be written in the from
+\subsection{Pauli Encoding}
+\subsection{Toy Hamiltonians}
+Show explicit $2\times 2$ and $4\times 4$ expressions with Pauli matrices.
+\subsubsection{Lipkin Model}
+Using the level mapping \comment{introduce the mappings?}, the spin operators from \cref{eq:theo:quasi_spin_definitions} can be written using their one-body counterparts as 
 \begin{align}
-    H = \sum_i w_i P_i \label[eq]{eq:theo:pauli_encoding_general}
+    J_z = \sum_{i}^{N} \spinsmall{z}{i} \hspace{20px} J_\pm = \sum_i^N \spinsmall{\pm}{i} = \sum_i^N (\spinsmall{x}{i}\pm i\spinsmall{y}{i}) \label[eq]{eq:met:quasispin_to_onebody_mapping}
 \end{align}
-For a general two-body Hamiltonian, this task can serve challenging. Many schemes exists for this purpose, such as the Jordan-Wigner transformation \citep{steudtnerMethodsSimulateFermions2019}. For the Lipkin model, an easier approach is available since the Hamiltonian can be written as products of the number and spin operators.
-
-\subsection{Variational Principle}
-The Rayleig-Ritz Variational Method claims that for a given Hamiltonian operator, \textbf{H}, the expectation value of a given state has a lower bound on the energy $E_0$, such that
-\begin{equation}
-    \frac{\bra{a}\boldsymbol{H}\ket{a}}{\braket{a}} \geq E_0
-\end{equation}
-This is a crucial method in perturbation theory, as it allows for the ability to approximate the lower bounds of the lowest eigenvalue of the Hamiltonian. It is the essential principle of the Variational Quantum Eigensolver. 
-
-\section{Variational Quantum Eigensolver}
-The Variational Quantum Eigensolver(VQE) takes on applying the Variational Principle, described above, minimizing the energy of 
-\begin{equation}\label{VQE}
-    E_{temp} = \frac{\bra{a}\boldsymbol{H}\ket{a}}{\braket{a}}
-\end{equation}
-with regards to altering the state $\ket{a}$. This is achieved by applying an ansatz to the initial state, in order to get an output eigenvalue, which further can be minimized. The ansatz takes \textit{n} Quantum Bits (qbits) and \textit{n} free parameters, $\theta_i$. The goal of the algorithm is to alter the parameters $\theta_i$ in order to achieve the optimal the minimal energy of the system, as computed in Eq. (\ref{VQE}). A schematic of the process is shown in Fig(\ref{}). The ansatz conjectured by Hlatshwayo et al. \cite{} is shown in Fig. (\ref{}). 
+with $N$ being the number of particles. Additionally, since we have spin-$\sfrac{1}{2}$ fermions, the mapping to Pauli matrices follow
+\begin{align}
+    \spinsmall{x}{i} = \frac{1}{2}X_i,\hspace{20px}\spinsmall{y}{i} = \frac{1}{2}Y_i,\hspace{20px}\spinsmall{z}{i} = \frac{1}{2}Z_i. \label[eq]{eq:met:onebody_to_pauli_mapping}
+\end{align}
+As shown in \cref{sec:app:pauliencoding_detailed}, \cref{eq:theo:lipkin_quasispin_hamiltonian} can be expressed as
+\begin{align}
+    \begin{split}\label[eq]{eq:met:lipkin_pauli_hamiltonian}
+        H_0 &= \frac{\epsilon}{2}\sum_{p}Z_p  \\
+        H_1 &= \frac{1}{2}V \sum_{p < q} X_p X_q - Y_p Y_q \\
+        H_2 &= \frac{1}{2}W \sum_{p < q} \pclosed{ X_p X_q + Y_p Y_q } - \frac{1}{2}W 
+    \end{split}
+\end{align}
