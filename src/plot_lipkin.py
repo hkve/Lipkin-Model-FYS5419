@@ -67,7 +67,7 @@ def plot_v_vs_E(N=4):
 
     for i in range(n_pts):
         E_DIAG[i] = run_lipkin_DIAG(v[i], w, N)
-        E_VQE[i] = run_lipkin_VQE(v[i], w, N, maxiter=100)
+        E_VQE[i] = run_lipkin_VQE(v[i], w, N, maxiter=300)
         E_HF[i] = run_HF(v[i], w, N)
         E_RPA[i] = run_RPA(v[i], w, N)
 
@@ -78,8 +78,9 @@ def plot_v_vs_E(N=4):
     ax.plot(v, E_RPA, label="RPA")
     ax.set(xlabel=r"$V/\epsilon$", ylabel=r"$E_0 / \epsilon$")
     ax.legend()
-    plot_utils.save("N2_lipkin_vary_V")
+    plot_utils.save(f"N{N}_lipkin_vary_V")
     plt.show()
 
 if __name__ == '__main__':
     plot_v_vs_E(N=2)
+    plot_v_vs_E(N=4)
