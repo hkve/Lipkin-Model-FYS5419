@@ -1,5 +1,5 @@
 \subsection{Notation}
-The basic building block of a QC is the \textit{qbit}. Resembling the binary representation of the CC, the qbit is defined as a two-level system. In the canonical/standard/Pauli basis, we express the basis states as
+The basic building block of a QC is the \textit{qbit}. Resembling the binaryness \comment{er dette et ord?} of the CC, the qbit is defined as a two-level system. In the canonical/standard/Pauli basis, we express the basis states as
 \begin{align*}
     \ket{0} = \begin{pmatrix}
         1 \\
@@ -56,8 +56,20 @@ In the introduction, vague outlines of the functionality of QC is presented. In 
     0 & 0 & 1 & 0 
     \end{pmatrix}
 \end{equation}
-Hadamard gates changes the basis of the gate between Pauli Z and Pauli X basis. CNOT changes the affected gate, based on the state of the control state. Visually, in a circuit, this can be presented as shown in Fig(\ref{} VIS TIL SØT CIRCUIT). The result is a full entanglement, where the outcome of any measurement on any qbit, will ascertain the outcome of all other measurements, as shown in Fig(\ref{} HER KAN VI VISE TIL EN AV DE ANDRE RARE PLOTA).
-
+\begin{figure}
+    \centering
+    \includegraphics{figs/ansatz.pdf}
+    \caption{The ansatz of our VQE. A rotation about the y-axis of the Bloch-sphere on the first qbit and a controlled rotation of the second qbit about the same axis.}
+    \label{fig:ansatz}
+\end{figure}
+Hadamard gates changes the basis of the gate between Pauli Z and Pauli X basis. CNOT changes the affected gate, based on the state of the control state. Visually, in a circuit, this can be presented as shown in Fig(\ref{fig:ansatz}).
+The result is a full entanglement, where the outcome of any measurement on any qbit, will ascertain the outcome of all other measurements, as shown in Fig(\ref{fig:ansatz_bloch}).
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.4]{figs/Ansatz Bloch.png}
+    \caption{The Bloch-sphere representation of the ansatz, given set values of $\theta$ and $\phi$}
+    \label{fig:ansatz_bloch}
+\end{figure}
 \subsection{Variational Principle}
 The Rayleig-Ritz Variational Method claims that for a given Hamiltonian operator, \textbf{H}, the expectation value of a given state has a lower bound on the energy $E_0$, such that
 \begin{equation}
