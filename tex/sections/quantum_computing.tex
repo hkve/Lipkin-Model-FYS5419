@@ -1,18 +1,24 @@
 \subsection{Notation}
-Define 
-\begin{align}
+The basic building block of a QC is the \textit{qbit}. Resembling the binaryness \comment{er dette et ord?} of the CC, the qbit is defined as a two-level system. In the canonical/standard/Pauli basis, we express the basis states as
+\begin{align*}
     \ket{0} = \begin{pmatrix}
         1 \\
         0
     \end{pmatrix}, \ket{1} = \begin{pmatrix}
         0 \\ 
         1
-    \end{pmatrix}
-\end{align}
+    \end{pmatrix}.
+\end{align*}
+Despite the similarity to bits, a qbit is allowed to be in a superposition of the two basis states, meaning that 
+\begin{align*}
+    \ket{\psi} = c_0 \ket{0} + c_1 \ket{1}, \hspace{20px} c_0,c_1 \in \mathbb{C}
+\end{align*}
+is also a valid qbit, constrained to normalization $|c_0|^2 + |c_1|^2 = 1$. The modulus of the coefficients $c_0,c_1$ are through the Born rule interred as the point probability of measuring basis state $\ket{0}$ and $\ket{1}$ respectively, mirroring probability vectors. However, the qbits $\set{\ket{\psi}_i}$ are expressed through the coefficients $\set{c_i}$ and not their modulus, allowing both negative and complex values, resulting in the possibility for both constructive and destructive interference when added together.
 
-\begin{align}
-    \ket{ij} = \ket{i} \otimes \ket{j}
-\end{align}
+We are however not only limited to a single qbit. Composite systems of two-level qbits can be created, mathematically expressed as tensor products between states. Considering the Pauli basis $\set{\ket{0},\ket{1}}$, we can create a new basis $\set{\ket{00},\ket{01},\ket{10},\ket{11}}$ through the operation
+\begin{align*}
+    \ket{ij} = \ket{i} \otimes \ket{j} \hspace{20px} i,j=0,1
+\end{align*}
 
 \begin{align}
     X = \begin{pmatrix}
@@ -26,6 +32,10 @@ Define
         0 & -1
     \end{pmatrix}
 \end{align}
+% \begin{align*}
+%     \ket{+} = \frac{1}{\sqrt{2}} (\ket{0} + \ket{1}) \\ 
+%     \ket{-} = \frac{1}{\sqrt{2}} (\ket{0} - \ket{1})
+% \end{align*}
 
 \subsection{Basics of Quantum Computing}
 In the introduction, vague outlines of the functionality of QC is presented. In this section, the circuits and representation will be presented with a elementary example of circuits and states. A Greenberger-Horne-Zeilinger(GHZ) State is a  fully entangled set of three or more quantum bits, or qbits. It can be encoded by applying a Haddamard gate to the primary gate, and CNOT gates to the subsequent. In matrix representation these operations are
