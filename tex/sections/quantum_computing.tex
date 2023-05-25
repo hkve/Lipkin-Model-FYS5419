@@ -34,9 +34,9 @@ The above procedure can be repeated for more than two qbits. In the realm of QC,
 \end{align}
 Just as with qbits, we can through the tensor product compose operators acting on multiple qbits. To avoid potential confusion between multiple operators being applied and composite operators, a subscript on these operators will be added. For instance, a three qbit operator can be constructed as
 \begin{align}
-    X_1 Z_3 = X_1 \otimes I \otimes Z 
+    X_1 Z_3 = X \otimes I \otimes Z 
 \end{align} 
-Where $I$ is the $2 \times 2$ identity matrix.
+Where $I$ is the $2 \times 2$ identity matrix. Here $X_1 Z_3$ applied to a three qbit state applies $X$ to the first qbit, does nothing with the second and applies $Z$ on the third.
 % \begin{align*}
 %     \ket{+} = \frac{1}{\sqrt{2}} (\ket{0} + \ket{1}) \\ 
 %     \ket{-} = \frac{1}{\sqrt{2}} (\ket{0} - \ket{1})
