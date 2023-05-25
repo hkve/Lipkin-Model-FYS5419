@@ -1,5 +1,5 @@
 \subsection{Notation}
-The basic building block of a QC is the \textit{qbit}. Resembling the binary representation of the CC, the qbit is defined as a two-level system. In the canonical/standard/Pauli basis, we express the basis states as
+The basic building block of a QC is the \textit{qbit}. Resembling the binary representation in CC, the qbit is defined as a two-level system. In the canonical/standard/Pauli basis, we express the basis states as
 \begin{align*}
     \ket{0} = \begin{pmatrix}
         1 \\
@@ -58,17 +58,25 @@ In the introduction, vague outlines of the functionality of QC is presented. In 
 \end{equation}
 \begin{figure}
     \centering
-    \includegraphics{figs/ansatz.pdf}
-    \caption{The ansatz of our VQE. A rotation about the y-axis of the Bloch-sphere on the first qbit and a controlled rotation of the second qbit about the same axis.}
-    \label{fig:ansatz}
+    \includegraphics{figs/GHZ.png}
+    \caption{The circuit needed to initialize the GHZ state for three qubits.}
+    \label{fig:GHZ_circ}
 \end{figure}
-Hadamard gates changes the basis of the gate between Pauli Z and Pauli X basis. CNOT changes the affected gate, based on the state of the control state. Visually, in a circuit, this can be presented as shown in Fig(\ref{fig:ansatz}).
-The result is a full entanglement, where the outcome of any measurement on any qbit, will ascertain the outcome of all other measurements, as shown in Fig(\ref{fig:ansatz_bloch}).
+Hadamard gates changes the basis of the gate between Pauli Z and Pauli X basis. CNOT changes the affected gate, based on the state of the control state. Visually, in a circuit, this can be presented as shown in Fig(\ref{fig:GHZ_circ}).
+The result is a full entanglement, as seen in Fig(\ref{fig:qshpere}), where the outcome of any measurement on any qbit, will ascertain the outcome of all other measurements, as shown in Fig(\ref{fig:GHZ_measure}).
 \begin{figure}
     \centering
-    \includegraphics[scale=0.4]{figs/Ansatz Bloch.png}
-    \caption{The Bloch-sphere representation of the ansatz, given set values of $\theta$ and $\phi$}
-    \label{fig:ansatz_bloch}
+    \begin{subfigure}{0.48\textwidth}
+        \includegraphics[width=\textwidth]{figs/GHZ qsphere.png}
+        \caption{The Bloch-sphere representation of the GHZ state, given three qubits. It is strictly entangled, by their parallell nature.}
+        \label{fig:qshpere}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.48\textwidth}
+        \includegraphics[width=\textwidth]{figs/GHZ Counts.png}
+        \caption{The outcome of measurements of the GHZ state with three qubits.}
+        \label{fig:GHZ_measure}
+    \end{subfigure}
 \end{figure}
 \subsection{Variational Principle}
 The Rayleig-Ritz Variational Method claims that for a given Hamiltonian operator, \textbf{H}, the expectation value of a given state has a lower bound on the energy $E_0$, such that
@@ -82,7 +90,18 @@ The Variational Quantum Eigensolver(VQE) takes on applying the Variational Princ
 \begin{equation}\label{VQE}
     E_{temp} = \frac{\bra{a}\boldsymbol{H}\ket{a}}{\braket{a}}
 \end{equation}
-with regards to altering the state $\ket{a}$. This is achieved by applying an ansatz to the initial state, in order to get an output eigenvalue, which further can be minimized. The ansatz takes \textit{n} Quantum Bits (qbits) and \textit{n} free parameters, $\theta_i$. The goal of the algorithm is to alter the parameters $\theta_i$ in order to achieve the optimal the minimal energy of the system, as computed in Eq. (\ref{VQE}). A schematic of the process is shown in Fig(\ref{}). The ansatz conjectured by Hlatshwayo et al. \cite{} is shown in Fig. (\ref{}). 
+with regards to altering the state $\ket{a}$. This is achieved by applying an ansatz to the initial state, in order to get an output eigenvalue, which further can be minimized. The ansatz takes \textit{n} Quantum Bits (qbits) and \textit{n} free parameters, $\theta_i$. The goal of the algorithm is to alter the parameters $\theta_i$ in order to achieve the optimal the minimal energy of the system, as computed in Eq. (\ref{VQE}). A schematic of the process is shown in Fig(\ref{fig:VQE_scheme}). The ansatz conjectured by Hlatshwayo et al. \cite{} is shown in Fig. (\ref{fig:ansatz}). \begin{figure}
+    \centering
+    \includegraphics[scale=0.8]{figs/VQE.PNG}
+    \caption{A schematic of the process of Variational Quantum Eigensolvers.}
+    \label{fig:VQE_scheme}
+\end{figure}
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.8]{figs/ansatz.pdf}
+    \caption{The ansatz for the VQE scheme applied for N = 4. }
+    \label{fig:ansatz}
+\end{figure}
 
 \subsection{Pauli Encoding Hamiltonians}
 To apply a specific system to VQE, the Hamiltonian must be re-written in terms of a sum of \textit{Pauli strings}. Considering the identity $I$ and the three Pauli matrices $X, Y, Z$, we construct a specific term as a tensor product of these $P_i$. For an $n$-qubit system, we require $n-1$ tensor products. Combined with a weight $w_i$, the Hamiltonian must be written in the from
