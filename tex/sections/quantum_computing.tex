@@ -16,10 +16,10 @@ Despite the similarity to bits, a qbit is allowed to be in a superposition of th
 is also a valid qbit, constrained to normalization $|c_0|^2 + |c_1|^2 = 1$. The modulus of the coefficients $c_0,c_1$ are through the Born rule interred as the point probability of measuring basis state $\ket{0}$ and $\ket{1}$ respectively, mirroring probability vectors. However, the qbits $\set{\ket{\psi}_i}$ are expressed through the coefficients $\set{c_i}$ and not their modulus, allowing both negative and complex values, resulting in the possibility for both constructive and destructive interference when added together.
 
 We are however not only limited to a single qbit. Composite systems of two-level qbits can be created, mathematically expressed as tensor products between states. Considering the Pauli basis $\set{\ket{0},\ket{1}}$, we can create a new basis $\set{\ket{00},\ket{01},\ket{10},\ket{11}}$ through the operation
-\begin{align*}
-    \ket{ij} = \ket{i} \otimes \ket{j} \hspace{20px} i,j=0,1
-\end{align*}
-
+\begin{align}
+    \ket{ij} = \ket{i} \otimes \ket{j} \hspace{20px} i,j=0,1. \label[eq]{eq:theo:pauli_matricies_definition}
+\end{align}
+The above procedure can be repeated for more than two qbits. In the realm of QC, the most important operators are the Pauli matrices, often referred to the $X,Y$ and $Z$ \textit{gates} 
 \begin{align}
     X = \begin{pmatrix}
         0 & 1 \\
@@ -32,6 +32,11 @@ We are however not only limited to a single qbit. Composite systems of two-level
         0 & -1
     \end{pmatrix}
 \end{align}
+Just as with qbits, we can through the tensor product compose operators acting on multiple qbits. To avoid potential confusion between multiple operators being applied and composite operators, a subscript on these operators will be added. For instance, a three qbit operator can be constructed as
+\begin{align}
+    X_1 Z_3 = X_1 \otimes I \otimes Z 
+\end{align} 
+Where $I$ is the $2 \times 2$ identity matrix.
 % \begin{align*}
 %     \ket{+} = \frac{1}{\sqrt{2}} (\ket{0} + \ket{1}) \\ 
 %     \ket{-} = \frac{1}{\sqrt{2}} (\ket{0} - \ket{1})
@@ -60,7 +65,7 @@ The Rayleig-Ritz Variational Method claims that for a given Hamiltonian operator
 \end{equation}
 This is a crucial method in perturbation theory, as it allows for the ability to approximate the lower bounds of the lowest eigenvalue of the Hamiltonian. It is the essential principle of the Variational Quantum Eigensolver. 
 
-\section{Variational Quantum Eigensolver}
+\subsection{Variational Quantum Eigensolver}
 The Variational Quantum Eigensolver(VQE) takes on applying the Variational Principle, described above, minimizing the energy of 
 \begin{equation}\label{VQE}
     E_{temp} = \frac{\bra{a}\boldsymbol{H}\ket{a}}{\braket{a}}
