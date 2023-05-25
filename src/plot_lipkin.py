@@ -81,6 +81,27 @@ def plot_v_vs_E(N=4):
     plot_utils.save(f"N{N}_lipkin_vary_V")
     plt.show()
 
+def plot_diff_heatmap(N=4):
+    n_pts = 5
+    v_range = np.linspace(0,2, n_pts)
+    w_range = np.linspace(0,2, n_pts)
+
+    v_grid, w_grid = np.meshgrid(v_range, w_range, indexing="ij")
+    E_exact, E_vqe = np.zeros_like(v_grid), np.zeros_like(v_grid)
+
+    for i in range(n_pts):
+        for j in range(n_pts):
+            v, w = v_grid[i, j], w_grid[i,j]
+            E_exact[i,j] = run_lipkin_DIAG(v, w, N=N)
+            E_vqe[i,j] = run_lipkin_VQE(v, w, N=N)
+            print(f"done {(j+1) + i*N}, {v = }, {w = }")
+            
+    diff = np.abs(E_exact - E_vqe)
+    fig, ax = plt.subplots()
+    cs = ax.contourf(v_grid, w_grid, diff)
+    cbar = fig.colorbar(cs, ax=ax)
+    plt.show()
 if __name__ == '__main__':
-    plot_v_vs_E(N=2)
-    plot_v_vs_E(N=4)
+    # plot_v_vs_E(N=2)
+    # plot_v_vs_E(N=4)
+    plot_diff_heatmap()
