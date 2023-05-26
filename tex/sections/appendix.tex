@@ -1,4 +1,4 @@
-\section{$J=1$ Lipkin Hamiltonian}\label[sec]{sec:app:lipkin_spin_one_hamiltonian}
+\subsection{$J=1$ Lipkin Hamiltonian}\label[app]{sec:app:lipkin_spin_one_hamiltonian}
 Since we have expressed the Hamiltonian using quasi-spin operators, investigating how the states $\ket{J, J_z}$ are related to each other will be beneficial. For $J=1$ ($N=2$) we can write the $J_z = \pm 1$ states as
 
 \begin{align*}
@@ -44,11 +44,11 @@ Combining these results we find
 \end{align*}
 Ordered such that $\bra{J,J_z} H \ket{J,J_z'} = H_{J_z+1,J_z'+1}$
 
-\section{Pauli Encoding}\label[sec]{sec:app:pauliencoding_detailed}
+\subsection{Detailed Pauli Encoding of the Lipkin Model}\label[app]{sec:app:pauliencoding_detailed}
 We will now convert \cref{eq:theo:quasi_spin_definitions} to \cref{eq:met:lipkin_pauli_hamiltonian} using the spin mappings from \cref{eq:met:quasispin_to_onebody_mapping} and \cref{eq:met:onebody_to_pauli_mapping}. The diagonal term $H_0$ is quite simple, where we simply substitute in for the $z$ spin giving
 
 \begin{align*}
-    H_0 = \epsilon J_z = \epsilon \sum_{p} \spinsmall{z}{p} = \frac{\epsilon}{2} \sum_p Z_p
+    H_0 = \epsilon J_z = \epsilon \sum_{p} \spinsmall{z}{p} = \frac{\epsilon}{2} \sum_p Z_p 
 \end{align*}
 Moving on to the $H_1$ term, we need to expand the square of the $J_\pm$ operators. Starting with $J_+$ we find
 \begin{align}
@@ -66,7 +66,33 @@ By inspection we see that the cross terms of \cref{eq:app:jpluss_square_expanded
     &= \frac{1}{2} \sum_p X_p^2 - Y_p^2 + \sum_{p > q} X_p X_q - Y_p Y_q
 \end{align*}
 The diagonal term will cancel out, since the Pauli matrices are involutory, giving the pair moving Hamiltonian
+\begin{align}
+    H_1 = \frac{1}{2}V \sum_{p > q} X_p X_q - Y_p Y_q
+\end{align}
+Lastly for $H_2$, we need to calculate the mixing terms of $J_\pm$ operators from \cref{eq:theo:lipkin_quasispin_hamiltonian}. Following the same procedure we see that
+
 \begin{align*}
-    H_1 = \frac{1}{2}V \sum_{p > q} X_p X_q - Y_p Y_q 
+    J_+ J_- &= \pclosed{\sum_p \spinsmall{x}{p} + i\spinsmall{y}{p}} \pclosed{\sum_p \spinsmall{x}{p} - i\spinsmall{y}{p}} \\
+    &= \sum_{pq} \spinsmall{x}{p}\spinsmall{x}{q} + \spinsmall{y}{p}\spinsmall{y}{q} -i \spinsmall{x}{p}\spinsmall{y}{q} -i \spinsmall{y}{p}\spinsmall{x}{q}
 \end{align*}
-\comment{Can do same for $H_2$ to include $W$ but does not get correct result, will have to check the math before texing.}
+Similarly the other mixing term gives
+\begin{align*}
+    J_- J_+ &= \pclosed{\sum_p \spinsmall{x}{p} - i\spinsmall{y}{p}} \pclosed{\sum_p \spinsmall{x}{p} + i\spinsmall{y}{p}} \\
+    &= \sum_{pq} \spinsmall{x}{p}\spinsmall{x}{q} + \spinsmall{y}{p}\spinsmall{y}{q} +i \spinsmall{x}{p}\spinsmall{y}{q} +i \spinsmall{y}{p}\spinsmall{x}{q}
+\end{align*}
+Again we see that the cross terms of $\spinsmall{x}{p}$ and $\spinsmall{y}{q}$ cancel out. Expanding in diagonal and off-diagonal terms
+
+\begin{align*}
+    \set{J_+, J_-} &= 2 \sum_{pq} \spinsmall{x}{p}\spinsmall{x}{q} + \spinsmall{y}{p}\spinsmall{y}{q} \\
+    &= 4 \sum_{p < q} \spinsmall{x}{p}\spinsmall{x}{q} + \spinsmall{y}{p}\spinsmall{y}{q} + 2\sum_{p} \pclosed{\spinsmall{x}{p}}^2 + \pclosed{\spinsmall{y}{q}}^2
+\end{align*}
+And inserting the mapping to Pauli matrices \cref{eq:met:onebody_to_pauli_mapping} we find
+
+\begin{align*}
+    \set{J_+, J_-} &= \sum_{p < q} X_p X_q + Y_p Y_q + \frac{1}{2}\sum_{p}X_p^2 + Y_p^2 \\
+     &= \sum_{p < q} \pclosed{X_p X_q + Y_p Y_q} + I
+\end{align*}
+From \cref{eq:theo:lipkin_quasispin_hamiltonian} we see that $H_2$ contains the diagonal number operator, which simply is the identity canceling the identity from $\set{J_+, J_z}$
+\begin{align}
+    H_2 = \frac{1}{2}W \sum_{p < q} X_p X_q + Y_p Y_q 
+\end{align}
