@@ -122,6 +122,22 @@ Using this basis for the quasi-spin Hamiltonian from \cref{eq:theo:lipkin_quasis
 
 \subsection{Encodings}
 \subsubsection{Toy Hamiltonians}
+Firstly we need to express the Hamiltonian from \cref{eq:theo:2times2_hamiltonian} using Pauli matrices. Beginning with the diagonal $H_0$, we need to fill the both entries with different energy values. Defining their difference using
+
+\begin{align*}
+    E_+ = \frac{E_1 + E_2}{2},\hspace{20px} E_- = \frac{E_1 - E_2}{2}
+\end{align*}
+we see that by combining the identity and Z Pauli matrix, this can be expressed as
+
+\begin{align*}
+    H_0 = E_+ I + E_- Z
+\end{align*}
+For $H_1$ we use the same trick to fill the diagonal, defining $V_+ = (V_{11} + V_{22})/2, V_- = (V_{11} - V_{22})/2$. From the hermiticity requirements of $H$, we note that $V_{12} = V_{21} \equiv V_o$, which simplifies the problem to a simple $X$. Therefor
+
+\begin{align*}
+    H_I = V_+ I + V_- Z + V_o X
+\end{align*}
+
 Show explicit $2\times 2$ and $4\times 4$ expressions with Pauli matrices.
 \subsubsection{Lipkin Model}
 Using the level mapping \comment{introduce the mappings?}, the spin operators from \cref{eq:theo:quasi_spin_definitions} can be written using their one-body counterparts as 
