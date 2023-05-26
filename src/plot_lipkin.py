@@ -81,27 +81,45 @@ def plot_v_vs_E(N=4):
     plot_utils.save(f"N{N}_lipkin_vary_V")
     plt.show()
 
-def plot_diff_heatmap(N=4):
-    n_pts = 5
+def plot_diff_heatmap(N=4, load=False, filename="test"):
+    n_pts = 50
     v_range = np.linspace(0,2, n_pts)
     w_range = np.linspace(0,2, n_pts)
 
     v_grid, w_grid = np.meshgrid(v_range, w_range, indexing="ij")
     E_exact, E_vqe = np.zeros_like(v_grid), np.zeros_like(v_grid)
 
-    for i in range(n_pts):
-        for j in range(n_pts):
-            v, w = v_grid[i, j], w_grid[i,j]
-            E_exact[i,j] = run_lipkin_DIAG(v, w, N=N)
-            E_vqe[i,j] = run_lipkin_VQE(v, w, N=N)
-            print(f"done {(j+1) + i*N}, {v = }, {w = }")
+    if not load:
+        for i in range(n_pts):
+            for j in range(n_pts):
+                v, w = v_grid[i, j], w_grid[i,j]
+                E_exact[i,j] = run_lipkin_DIAG(v, w, N=N)
+                E_vqe[i,j] = run_lipkin_VQE(v, w, N=N)
+                print(f"done {(j+1) + i*n_pts}, {v = }, {w = }")
             
-    diff = np.abs(E_exact - E_vqe)
+        with open(f"{filename}.npy", "wb") as file:
+            np.save(file, v_grid)
+            np.save(file, w_grid)
+            np.save(file, E_exact)
+            np.save(file, E_vqe)
+
+    if load:
+        with open(f"{filename}.npy", "rb") as file:
+            v_grid = np.load(file)
+            w_grid = np.load(file)
+            E_exact = np.load(file)
+            E_vqe = np.load(file)
+            
+
+    diff = np.abs((E_exact - E_vqe)/E_exact) * 100
     fig, ax = plt.subplots()
     cs = ax.contourf(v_grid, w_grid, diff)
     cbar = fig.colorbar(cs, ax=ax)
+    cbar.set_label(r"VQE \% relative error", rotation=90)
+    ax.set(xlabel=r"$V/\epsilon$", ylabel=r"$W/\epsilon$")
+    plot_utils.save(filename)
     plt.show()
 if __name__ == '__main__':
     # plot_v_vs_E(N=2)
     # plot_v_vs_E(N=4)
-    plot_diff_heatmap()
+    plot_diff_heatmap(load=True, filename="50pts_vw_grid")
