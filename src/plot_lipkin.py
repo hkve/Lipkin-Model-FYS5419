@@ -11,11 +11,10 @@ from qiskit.opflow import AerPauliExpectation
 from qiskit.algorithms import VQE
 from qiskit.algorithms.optimizers import SPSA
 
-        
-def run_lipkin_VQE(v, w, N=4, maxiter=1000):
+def run_lipkin_VQE(v, w, N=4, maxiter=1000, force_nq_scheme=None, initial_point=None):
     ansatz = RealAmplitudes(num_qubits=N, entanglement='linear', reps=1)
     
-    hamiltonian = lipkin_utils.get_hamiltonian(v, w, N)
+    hamiltonian = lipkin_utils.get_hamiltonian(v, w, N, force_nq_scheme)
 
     backend = Aer.get_backend('statevector_simulator')
     optimizer = SPSA(maxiter=maxiter)
@@ -24,10 +23,12 @@ def run_lipkin_VQE(v, w, N=4, maxiter=1000):
     vqe = VQE(ansatz=ansatz,
             optimizer=optimizer,
             quantum_instance=backend,
-            expectation=expectation)
+            expectation=expectation,
+            initial_point=initial_point)
 
     result = vqe.compute_minimum_eigenvalue(operator=hamiltonian)
-    return  result.optimal_value
+    
+    return  result.optimal_value, result.optimal_point
 
 def run_lipkin_DIAG(v, w, N=4):
     H = lipkin_utils.get_hamiltonian_matrix(v, w, N)
@@ -62,19 +63,22 @@ def plot_v_vs_E(N=4):
     w = 0
     E_DIAG = np.zeros_like(v)
     E_VQE = np.zeros_like(v)
+    E_VQE_nq = np.zeros_like(v)
     E_HF = np.zeros_like(v)
     E_RPA = np.zeros_like(v)
 
-
+    pt_nq = None
     for i in range(n_pts):
         E_DIAG[i] = run_lipkin_DIAG(v[i], w, N)
-        E_VQE[i] = run_lipkin_VQE(v[i], w, N, maxiter=300)
+        E_VQE[i], _ = run_lipkin_VQE(v[i], w, N, maxiter=300)
+        E_VQE_nq[i], pt_nq = run_lipkin_VQE(v[i], w, N, maxiter=1000, force_nq_scheme=True, initial_point=pt_nq)
         E_HF[i] = run_HF(v[i], w, N)
         E_RPA[i] = run_RPA(v[i], w, N)
 
     fig, ax = plt.subplots()
     ax.plot(v, E_DIAG, c="gray", label="Diagonalization")
-    ax.scatter(v, E_VQE, marker="x", c="r", label="VQE")
+    ax.scatter(v, E_VQE, marker="x", c="b", label="VQE $q=2$")
+    ax.scatter(v, E_VQE_nq, marker="x", c="r", label=rf"VQE $q=4$")
     ax.plot(v, E_HF, marker="+", markersize=4, label="HF")
     ax.plot(v, E_RPA, label="RPA")
     ax.set(xlabel=r"$V/\epsilon$", ylabel=r"$E_0 / \epsilon$")
@@ -103,7 +107,10 @@ def plot_diff_heatmap(N=4, load=False, filename="test", method="VQE", vocal=Fals
             for j in range(n_pts):
                 v, w = v_grid[i, j], w_grid[i,j]
                 E_exact[i,j] = run_lipkin_DIAG(v, w, N=N)
-                E_calc[i,j] = run_lipkin_get_E[method](v, w, N=N)
+                if method == "VQE":
+                    E_calc[i,j], pt = run_lipkin_get_E[method](v, w, N=N, initial_point=pt)
+                else:
+                    E_calc[i,j] = run_lipkin_get_E[method](v, w, N=N)
                 if vocal:
                     print(f"done {(j+1) + i*n_pts}, {v = }, {w = }")
             
@@ -131,7 +138,7 @@ def plot_diff_heatmap(N=4, load=False, filename="test", method="VQE", vocal=Fals
     plt.show()
 if __name__ == '__main__':
     # plot_v_vs_E(N=2)
-    # plot_v_vs_E(N=4)
+    plot_v_vs_E(N=4)
     # plot_diff_heatmap(load=False, filename="50pts_vw_grid", vocal=True)
-    plot_diff_heatmap(method="HF", filename="50pts_vw_grid_HF")
-    plot_diff_heatmap(method="RPA", filename="50pts_vw_grid_RPA")
+    # plot_diff_heatmap(method="HF", filename="50pts_vw_grid_HF")
+    # plot_diff_heatmap(method="RPA", filename="50pts_vw_grid_RPA")

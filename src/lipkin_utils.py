@@ -23,10 +23,10 @@ def get_hamiltonian_matrix(v, w, N):
     return H_exact
 
 
-def get_hamiltonian(v, w, N):
-    sp = 0.5
-    t1 = 0.5*(w+v)
-    t2 = 0.5*(w-v)
+def get_hamiltonian(v, w, N,force_nq_scheme=False):
+    sp = -0.5
+    t1 = -0.5*(w+v)
+    t2 = -0.5*(w-v)
     if N == 2:
         hamiltonian = PauliSumOp.from_list([
           ("ZI", sp),
@@ -35,7 +35,7 @@ def get_hamiltonian(v, w, N):
           ("YY", t2)
         ])
     elif N == 4:
-        if w == 0:
+        if w == 0 and not force_nq_scheme:
             v_prime = v * np.sqrt(6)/2
             hamiltonian = PauliSumOp.from_list([
                 ("ZI", 1),
