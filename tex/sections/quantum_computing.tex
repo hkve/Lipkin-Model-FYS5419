@@ -58,7 +58,7 @@ In the introduction, vague outlines of the functionality of QC is presented. In 
 \end{equation}
 \begin{figure}
     \centering
-    \includegraphics{figs/GHZ.png}
+    \includegraphics[width=\linewidth]{figs/GHZ.png}
     \caption{The circuit needed to initialize the GHZ state for three qubits.}
     \label{fig:GHZ_circ}
 \end{figure}
@@ -92,13 +92,13 @@ The Variational Quantum Eigensolver(VQE) takes on applying the Variational Princ
 \end{equation}
 with regards to altering the state $\ket{a}$. This is achieved by applying an ansatz to the initial state, in order to get an output eigenvalue, which further can be minimized. The ansatz takes \textit{n} Quantum Bits (qbits) and \textit{n} free parameters, $\theta_i$. The goal of the algorithm is to alter the parameters $\theta_i$ in order to achieve the optimal the minimal energy of the system, as computed in Eq. (\ref{VQE}). A schematic of the process is shown in Fig(\ref{fig:VQE_scheme}). The ansatz conjectured by Hlatshwayo et al. \cite{} is shown in Fig. (\ref{fig:ansatz}). \begin{figure}
     \centering
-    \includegraphics[scale=0.8]{figs/VQE.PNG}
+    \includegraphics[width=\linewidth]{figs/VQE.PNG}
     \caption{A schematic of the process of Variational Quantum Eigensolvers.}
     \label{fig:VQE_scheme}
 \end{figure}
 \begin{figure}
     \centering
-    \includegraphics[scale=0.8]{figs/ansatz.pdf}
+    \includegraphics[width=\linewidth]{figs/ansatz.pdf}
     \caption{The ansatz for the VQE scheme applied for N = 4. }
     \label{fig:ansatz}
 \end{figure}
