@@ -29,7 +29,7 @@ The entropy of entanglement in the case of the of the Hamiltonian consisting of 
 \begin{figure}[H]
     \centering
     \includegraphics[width=\linewidth]{figs/N4_lipkin_vary_V.pdf}
-    \caption{Ground state values for the Lipkin model for $N=4$ particles with $W = 0$ as a function of $V/\epsilon$. Calculations were done using exact diagonalization, VQE, in addition to closed form HF and RPA expressions.}
+    \caption{Ground state values for the Lipkin model for $N=4$ particles with $W = 0$ as a function of $V/\epsilon$. Calculations were done using exact diagonalization, VQE for both two (\cref{eq:met:lipkin_N4_smart_hamiltonian}) and four (\cref{eq:met:lipkin_N4_dumb}) qbits, in addition to closed form HF and RPA expressions.}
     \label[fig]{fig:res:Lipkin_N4_vary_v}
 \end{figure}
 
@@ -37,6 +37,20 @@ The entropy of entanglement in the case of the of the Hamiltonian consisting of 
 \begin{figure}[H]
     \centering
     \includegraphics[width=\linewidth]{figs/50pts_vw_grid.pdf}
-    \caption{Ground state values for the Lipkin model for $N=4$ particles with $W = 0$ as a function of $V/\epsilon$. Calculations were done using exact diagonalization, VQE, in addition to closed form HF and RPA expressions.}
+    \caption{Relative error in ground state energy for the Lipkin model, using $N=4$ particles as a function of $V/\epsilon$ $W/\epsilon$ and.}
+    \label[fig]{fig:res:lipkin_N4_vw_grid}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{figs/50pts_vw_grid_HF.pdf}
+    \caption{Relative error in ground state energy for the Lipkin model, using $N=4$ particles as a function of $V/\epsilon$ and $W/\epsilon$.}
+    \label[fig]{fig:res:lipkin_N4_vw_grid}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{figs/50pts_vw_grid_RPA.pdf}
+    \caption{Relative error in ground state energy for the Lipkin model, using $N=4$ particles as a function of $V/\epsilon$ $W/\epsilon$ and.}
     \label[fig]{fig:res:lipkin_N4_vw_grid}
 \end{figure}

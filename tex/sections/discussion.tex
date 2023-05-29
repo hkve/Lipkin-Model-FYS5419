@@ -1,3 +1,7 @@
+\subsection{Toy models}
+Going back to \cref{fig:res:changing_character} we see the classical example of level crossing in two-level systems. The phenomenon gets its name because in a plot of energy versus interaction strength, the energy levels appear to cross or avoid crossing each other, depending on the specific parameters and interactions involved, as seen. Taking a look at the coefficients, we see that for small interaction strengths $\lambda$, the ground state and excited state are almost purely dominated by $\ket{0}$ and $\ket{1}$ respectively. Increasing $\lambda$, the domination is less and less present. This continues until we reach $\lambda = 2/3$, where the ground state energy is maximal and excitation energy minimal. Moving past  $\lambda = 2/3$ results in the ground state being dominated by $\ket{1}$ and the excited state by $\ket{0}$, meaning that the states has change or swapped character.
+
+
 \begin{figure}
     \centering
     \includegraphics[scale=0.4]{figs/Eig_lmd.pdf}
@@ -9,3 +13,17 @@ The entropy in Fig. (\ref{fig:entropy}) has an initial contribution which increa
 
 The decision of the ansatz in Fig. (\ref{fig:ansatz}) seems a bit arbitrary, but is based on the ansatz in Hlatshwayo et al. (\cite{hlatshwayoSimulatingExcitedStates2022}). There could be possibilities in optimization by choosing a different ansatz. This would be a section of further research by delving into a review of VQE by Tilly et al. (\cite{VQE_review}). \newline 
 Further research could look into other methods of optimization, other than the VQE algorithm, as it is a fairly simple model with restricted applicability. It could probably be extended to solving other optimization problems with minor tweaks or clever encoding. The Lipkin model is fairly limited when it comes to QC. This is a result of the angular momentum operators $j_+$ and $j_-$ are not unitary and thus not applicable to general QC. Thus other models could be further researched in order to not simplify the Hamiltonian by non-unitarity. These models become fairly complex quickly and involves heavier computational costs in order to construct and optimize. \comment{Mangler litt idé om fler ting å kunne ta opp her.} 
+
+\subsection{Lipkin Model}
+\begin{itemize}
+    \item Good correspondence for two qbit calculations. Beating both RPA and HF 
+    \item Four qbits vary more. Can get differing results across runs \begin{itemize}
+        \item More possible outcomes of measurements
+        \item Harder to optimize due to larger parameter space. More interactions required?
+    \end{itemize}  
+    \item Also takes longer (due to more qbits). Emphasize using identities to shorten Pauli strings.
+    \item Using the $W=0$ symmetry is good for four particles. Spending time on rewriting with symmetries in mind is a good idea. 
+    \item Comment on general usable regions for $W/V$
+    \item Comment on the "holes". Hinting to more optimization required. However still classical optimizer. 
+    \item Compare with HF/RPA. Here the "beating" is less clear.
+\end{itemize}
