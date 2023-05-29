@@ -153,7 +153,7 @@ For $H_1$ we use the same trick to fill the diagonal, defining $V_+ = (V_{11} + 
 
 Show explicit $2\times 2$ and $4\times 4$ expressions with Pauli matrices.
 \subsubsection{Lipkin Model}
-Using the level mapping \comment{introduce the mappings?}, the spin operators from \cref{eq:theo:quasi_spin_definitions} can be written using their one-body counterparts as 
+Using the level mapping from \citep{hlatshwayoSimulatingExcitedStates2022}, the spin operators from \cref{eq:theo:quasi_spin_definitions} can be written using their one-body counterparts 
 \begin{align}
     J_z = \sum_{i}^{N} \spinsmall{z}{i} \hspace{20px} J_\pm = \sum_i^N \spinsmall{\pm}{i} = \sum_i^N (\spinsmall{x}{i}\pm i\spinsmall{y}{i}) \label[eq]{eq:met:quasispin_to_onebody_mapping}
 \end{align}
@@ -163,16 +163,31 @@ with $N$ being the number of particles. Additionally, since we have spin-$\sfrac
 \end{align}
 As shown in \cref{sec:app:pauliencoding_detailed}, \cref{eq:theo:lipkin_quasispin_hamiltonian} can be expressed as
 \begin{align}
-    \begin{split}\label[eq]{eq:met:lipkin_pauli_hamiltonian}
-        H_0 &= \frac{\epsilon}{2}\sum_{p}Z_p  \\
-        H_1 &= \frac{1}{2}V \sum_{p < q} X_p X_q - Y_p Y_q \\
-        H_2 &= \frac{1}{2}W \sum_{p < q} \pclosed{ X_p X_q + Y_p Y_q } 
+    \begin{split}\label[eq]{eq:met:lipkin_pauli_hamiltonian} 
+        H_0 &= \frac{\epsilon}{2}\sum_{p}Z_p,  \\
+        H_1 &= \frac{1}{2}V \sum_{p < q} X_p X_q - Y_p Y_q, \\
+        H_2 &= \frac{1}{2}W \sum_{p < q} \pclosed{ X_p X_q + Y_p Y_q }. 
     \end{split}
 \end{align}
-Additionally if we set $W = 0$, further reductions of the problem can be performed. Looking back at \cref{eq:theo:lipkin_quasispin_hamiltonian}, we note that if only $H_0$ and $H_1$ are included,  spins differing by $\pm2$ are the only possible interaction couplings. Since $H_0$ is diagonal and single particle energies are degenerate, it does not break the pairing symmetry. Instead of the $2J+1$ spin projections, we simply have $J+1$ relevant states.From \citep{hlatshwayoSimulatingExcitedStates2022} we have the two-qbit Hamiltonian for $N=4$ as
+We will investigate the integer spin systems $N=2\hspace{5px}(J=1)$ and $N=4\hspace{5px}(J=2)$. Writing out the expressions from \cref{eq:met:lipkin_pauli_hamiltonian} we have for two particles
 \begin{align}
-    H_{W=0}^{N=4}-\epsilon(Z_1 + Z_2) + \frac{\sqrt{6}}{2}V (X_1 + X_2 + Z_1 X_0 - X_1 Z_0) \label[eq]{eq:met:lipkin_N4_smart_hamiltonian}
+    H^{N=2} = \frac{\epsilon}{2}\pclosed{Z_1 + Z_2} + \frac{W+V}{2} X_1 X_2 - \frac{W-V}{2} Y_1 Y_2 \label[eq]{eq:met:lipkin_N4_dumb}
 \end{align}
+and for four particles
+\begin{align}
+    \begin{split} \label[eq]{eq:met:lipkin_N4_dumb}
+        H^{N=4} =& \frac{\epsilon}{2}\pclosed{Z_1 + Z_2 + Z_3 + Z_4} + \frac{W-V}{2}\Big( X_1 X_2 +\\ 
+        & X_1 X_3 + X_1 X_4 + X_2 X_3 + X_3 X_4 + X_3 X_4
+        \Big) \\
+        &+ \frac{W+V}{2}\Big( Y_1 Y_2 + Y_1 Y_3 + Y_1 Y_4 + Y_2 Y_3 \\
+        & + Y_3 Y_4 + Y_3 Y_4\Big)
+    \end{split}
+\end{align}
+Which is quite a mouthful. If we set $W = 0$, reductions of the problem can be performed. Looking back at \cref{eq:theo:lipkin_quasispin_hamiltonian}, we note that if only $H_0$ and $H_1$ are included,  spins differing by $\pm2$ are the only possible non-diagonal couplings. Since $H_0$ is diagonal and single particle energies are degenerate, it does not break the pairing symmetry. Instead of the $2J+1$ spin projections, we simply have $J+1$ relevant states. From \citep{hlatshwayoSimulatingExcitedStates2022} we have the two-qbit Hamiltonian for $N=4$ as
+\begin{align}
+    H_{W=0}^{N=4} = \epsilon(Z_1 + Z_2) + \frac{\sqrt{6}}{2}V (X_1 + X_2 + Z_1 X_0 - X_1 Z_0). \label[eq]{eq:met:lipkin_N4_smart_hamiltonian}
+\end{align}
+This will be more computationally efficient due to requiring only half the qbits of \cref{eq:met:lipkin_N4_dumb}. 
 
 \section{Calculating density matrices}
 Given a Hamiltonian consisting of a non- and an interacting Hamiltonian on a two qubit state, a state will have eigenvectors with coefficients $\alpha_{ij}$. For a Hamiltonian, which in matrix form has $4\times 4$ dimension, there will be four sets of eigenvectors, given a representation of the states in the form

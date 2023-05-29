@@ -38,12 +38,12 @@ def get_hamiltonian(v, w, N):
         if w == 0:
             v_prime = v * np.sqrt(6)/2
             hamiltonian = PauliSumOp.from_list([
-                ("ZI", -1),
-                ("IZ", -1),
-                ("XI", -v_prime),
-                ("IX", -v_prime),
-                ("ZX", -v_prime),
-                ("XZ", v_prime)
+                ("ZI", 1),
+                ("IZ", 1),
+                ("XI", v_prime),
+                ("IX", v_prime),
+                ("ZX", v_prime),
+                ("XZ", -v_prime)
             ])
         else:
             hamiltonian = PauliSumOp.from_list([("ZIII", sp),
