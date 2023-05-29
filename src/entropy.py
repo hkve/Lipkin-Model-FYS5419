@@ -10,7 +10,12 @@ import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 #import plot_utils
 from scipy.linalg import logm, expm
-plt.rcParams.update(plt.rcParamsDefault)
+# plt.rcParams.update(plt.rcParamsDefault)
+try:
+    import plot_utils
+except:
+    pass
+
 def log2m(a):
     return logm(a)/np.log(2)
 
@@ -80,8 +85,8 @@ fig.savefig("Eig_lmd.pdf")
 plt.show()
 
 
-plt.plot(lmd_, S_a_list, label ='S_a')
-plt.plot(lmd_, S_b_list, label = 'S_b')
+plt.plot(lmd_, S_a_list, label ='$S_a$')
+plt.plot(lmd_, S_b_list, label = '$S_b$')
 plt.xlabel('$\lambda$')
 plt.ylabel('Entropy')
 plt.legend()
