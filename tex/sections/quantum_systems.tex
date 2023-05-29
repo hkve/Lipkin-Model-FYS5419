@@ -112,7 +112,7 @@ To benchmark the VQE results for the Lipkin Model we will also compare with resu
         \frac{\epsilon^2 + (N-1)^2 (V+W)^2 }{2(N-1)(V+W)} + W & R > \epsilon,
     \end{cases} \label[eq]{eq:theo:hartreefock_lipkin}
 \end{align}
-which is split into two regions based on the relative strength between the interactions $V,W$ and the single particle energies $\epsilon$, defined as $R \equiv (N-1)(V+W)$. Also from \citep{coHartreeFockRandom2015}, we have the RPA solution
+which is split into two regions based on the relative strength between the interactions $V,W$ and the single particle energies $\epsilon$, $R \equiv (N-1)(V+W)$. Also from \citep{coHartreeFockRandom2015}, we have the RPA solution
 \begin{align}
     \ERPA = \EHF + \frac{\omega - A}{B},
 \end{align}
@@ -169,6 +169,11 @@ As shown in \cref{sec:app:pauliencoding_detailed}, \cref{eq:theo:lipkin_quasispi
         H_2 &= \frac{1}{2}W \sum_{p < q} \pclosed{ X_p X_q + Y_p Y_q } 
     \end{split}
 \end{align}
+Additionally if we set $W = 0$, further reductions of the problem can be performed. Looking back at \cref{eq:theo:lipkin_quasispin_hamiltonian}, we note that if only $H_0$ and $H_1$ are included,  spins differing by $\pm2$ are the only possible interaction couplings. Since $H_0$ is diagonal and single particle energies are degenerate, it does not break the pairing symmetry. Instead of the $2J+1$ spin projections, we simply have $J+1$ relevant states.From \citep{hlatshwayoSimulatingExcitedStates2022} we have the two-qbit Hamiltonian for $N=4$ as
+\begin{align}
+    H_{W=0}^{N=4}-\epsilon(Z_1 + Z_2) + \frac{\sqrt{6}}{2}V (X_1 + X_2 + Z_1 X_0 - X_1 Z_0) \label[eq]{eq:met:lipkin_N4_smart_hamiltonian}
+\end{align}
+
 \section{Calculating density matrices}
 Given a Hamiltonian consisting of a non- and an interacting Hamiltonian on a two qubit state, a state will have eigenvectors with coefficients $\alpha_{ij}$. For a Hamiltonian, which in matrix form has $4\times 4$ dimension, there will be four sets of eigenvectors, given a representation of the states in the form
 \begin{align}
