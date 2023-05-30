@@ -26,6 +26,7 @@ For the Lipkin Model, we initially investigate the $W=0$ case. For the two parti
     \caption{Ground state values for the Lipkin model for $N=2$ particles with $W = 0$ as a function of $V/\epsilon$. Calculations were done using exact diagonalization, VQE, in addition to closed form HF and RPA expressions.}
     \label[fig]{fig:res:Lipkin_N2_vary_v}
 \end{figure}
+Moving on to the four particle case, but still keeping $W=0$, we present the energy as a function of $V/\epsilon$ in \cref{fig:res:Lipkin_N4_vary_v}. Here we have used both the $Q=4$ (\cref{eq:met:lipkin_N4_dumb}) and the $Q=2$ (\cref{eq:met:lipkin_N4_smart_hamiltonian}) Hamiltonians. In addition, we also compare with HF and RPA solutions.
 
 \begin{figure}[H]
     \centering
@@ -34,24 +35,31 @@ For the Lipkin Model, we initially investigate the $W=0$ case. For the two parti
     \label[fig]{fig:res:Lipkin_N4_vary_v}
 \end{figure}
 
-
-\begin{figure}[H]
+Lastly we lift the $W=0$ restriction for four particles and consider the ground state energy as a function of both $V/\epsilon$ and $W/\epsilon$. In \cref{fig:res:lipkin_N4_vw_grid} we see the relative error from the diagonalization results.  
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[width=\linewidth]{figs/50pts_vw_grid.pdf}
+%     \caption{Relative error in ground state energy for the Lipkin model, using $N=4$ particles as a function of $V/\epsilon$ $W/\epsilon$ and. All energies were calculated using 1000 iterations.}
+%     \label[fig]{fig:res:lipkin_N4_vw_grid}
+% \end{figure}
+\begin{figure}
     \centering
-    \includegraphics[width=\linewidth]{figs/50pts_vw_grid.pdf}
+    \begin{subfigure}[b]{\linewidth}
+        \includegraphics[width=\linewidth]{figs/50pts_vw_grid.pdf}
+        \caption{Variational Quantum Eigensolver. All energies were calculated using 1000 iterations.}
+        \label[fig]{fig:res:lipkin_N4_vw_grid}
+    \end{subfigure}
+    \begin{subfigure}[b]{\linewidth}
+        \includegraphics[width=\linewidth]{figs/50pts_vw_grid_HF.pdf}
+        \caption{Hartree-Fock, closed form expressions}
+        \label[fig]{fig:res:lipkin_N4_vw_grid_HF}
+    \end{subfigure}
+    \begin{subfigure}[b]{\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{figs/50pts_vw_grid_RPA.pdf}
+        \caption{Random Phase Approximation, closed form expressions}
+        \label[fig]{fig:res:lipkin_N4_vw_grid_RPA}
+    \end{subfigure}
     \caption{Relative error in ground state energy for the Lipkin model, using $N=4$ particles as a function of $V/\epsilon$ $W/\epsilon$ and.}
-    \label[fig]{fig:res:lipkin_N4_vw_grid}
 \end{figure}
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\linewidth]{figs/50pts_vw_grid_HF.pdf}
-    \caption{Relative error in ground state energy for the Lipkin model, using $N=4$ particles as a function of $V/\epsilon$ and $W/\epsilon$.}
-    \label[fig]{fig:res:lipkin_N4_vw_grid}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\linewidth]{figs/50pts_vw_grid_RPA.pdf}
-    \caption{Relative error in ground state energy for the Lipkin model, using $N=4$ particles as a function of $V/\epsilon$ $W/\epsilon$ and.}
-    \label[fig]{fig:res:lipkin_N4_vw_grid}
-\end{figure}
