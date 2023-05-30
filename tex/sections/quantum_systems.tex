@@ -114,7 +114,7 @@ To benchmark the VQE results for the Lipkin Model we will also compare with resu
 \end{align}
 which is split into two regions based on the relative strength between the interactions $V,W$ and the single particle energies $\epsilon$, $R \equiv (N-1)(V+W)$. Also from \citep{coHartreeFockRandom2015}, we have the RPA solution
 \begin{align}
-    \ERPA = \EHF + \frac{\omega - A}{2},
+    \ERPA = \EHF + \frac{\omega - A}{2}, \label[eq]{eq:met:lipkin_RPA}
 \end{align}
 where
 \begin{align*}
@@ -171,7 +171,7 @@ As shown in \cref{sec:app:pauliencoding_detailed}, \cref{eq:theo:lipkin_quasispi
 \end{align}
 We will investigate the integer spin systems $N=2\hspace{5px}(J=1)$ and $N=4\hspace{5px}(J=2)$. Writing out the expressions from \cref{eq:met:lipkin_pauli_hamiltonian} we have for two particles
 \begin{align}
-    H^{N=2} = \frac{\epsilon}{2}\pclosed{Z_1 + Z_2} + \frac{W+V}{2} X_1 X_2 - \frac{W-V}{2} Y_1 Y_2 \label[eq]{eq:met:lipkin_N4_dumb}
+    H^{N=2} = \frac{\epsilon}{2}\pclosed{Z_1 + Z_2} + \frac{W+V}{2} X_1 X_2 - \frac{W-V}{2} Y_1 Y_2 \label[eq]{eq:met:lipkin_N2_dumb}
 \end{align}
 and for four particles
 \begin{align}
