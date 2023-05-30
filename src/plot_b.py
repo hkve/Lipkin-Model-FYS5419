@@ -61,8 +61,8 @@ def plot(lambdas, E1, E2, C_abs_E1, C_abs_E2):
     # axins.set_xticks([])
     axins.set_yticklabels([])
     mark_inset(ax, axins, loc1=1, loc2=4, fc="none", ec="0.5")
-    ax.annotate(r"$E_0$", xy=(0.05,4), xytext=(0.2, 4), arrowprops=dict(facecolor="gray", shrink=0.05), fontsize=15, verticalalignment="center")
-    ax.annotate(r"$E_1$", xy=(0.05,0), xytext=(0.2, 0), arrowprops=dict(facecolor="gray", shrink=0.05), fontsize=15, verticalalignment="center")
+    ax.annotate(r"$E_0$", xy=(0.05,0), xytext=(0.2, 0), arrowprops=dict(facecolor="gray", shrink=0.05), fontsize=15, verticalalignment="center")
+    ax.annotate(r"$E_1$", xy=(0.05,4), xytext=(0.2, 4), arrowprops=dict(facecolor="gray", shrink=0.05), fontsize=15, verticalalignment="center")
     plot_utils.save("chaning_character")
     plt.show()
 
