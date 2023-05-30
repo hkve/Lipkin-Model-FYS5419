@@ -78,14 +78,21 @@ The result is a full entanglement, as seen in Fig(\ref{fig:qshpere}), where the 
         \label{fig:GHZ_measure}
     \end{subfigure}
 \end{figure}
-\subsection{Variational Principle}
-The Rayleig-Ritz Variational Method claims that for a given Hamiltonian operator, \textbf{H}, the expectation value of a given state has a lower bound on the energy $E_0$, such that
+\subsection{Variational Quantum Eigensolver}
+In this section we will briefly remind the reader of some key aspects of the variational method, followed by an outline on how observable values can be calculated using a QC. 
+
+\subsubsection{Brief Remainder of the Variational Method}
+The Variational Method states that for a given Hamiltonian $H$, the expectation value of a \textit{trial state} $\ket{T}$ puts a lower bound on the ground state energy $E_0$.
 \begin{equation}
-    \frac{\bra{a}\boldsymbol{H}\ket{a}}{\braket{a}} \geq E_0
+    \frac{\bra{T}H\ket{T}}{\ip{T}} \geq E_0
 \end{equation}
+Assuming that the state $\ket{T}$ is normalized. The trial state is typically chosen to be a simple, parameterized function that can be varied to improve the energy estimate, $\ket{T}\equiv \ket{T(\boldsymbol{\theta})}$ where $\boldsymbol{\theta} = (\theta_1, \ldots, \theta_M)$ are the $M$ optimization parameters.
+
 This is a crucial method in perturbation theory, as it allows for the ability to approximate the lower bounds of the lowest eigenvalue of the Hamiltonian. It is the essential principle of the Variational Quantum Eigensolver. 
 
-\subsection{Variational Quantum Eigensolver}
+
+
+\subsubsection{Algorithm}
 The Variational Quantum Eigensolver(VQE) takes on applying the Variational Principle, described above, minimizing the energy of 
 \begin{equation}\label{VQE}
     E_{temp} = \frac{\bra{a}\boldsymbol{H}\ket{a}}{\braket{a}}
