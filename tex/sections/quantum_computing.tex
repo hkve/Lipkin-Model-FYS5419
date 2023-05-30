@@ -54,7 +54,7 @@ In the introduction, vague outlines of the functionality of QC is presented. In 
     0 & 1 & 0 & 0 \\
     0 & 0 & 0 & 1 \\
     0 & 0 & 1 & 0 
-    \end{pmatrix}
+    \end{pmatrix} \label[eq]{eq:theo:CNOT_Hadamard}
 \end{equation}
 \begin{figure}
     \centering
@@ -64,7 +64,7 @@ In the introduction, vague outlines of the functionality of QC is presented. In 
 \end{figure}
 Hadamard gates changes the basis of the gate between Pauli Z and Pauli X basis. CNOT changes the affected gate, based on the state of the control state. Visually, in a circuit, this can be presented as shown in Fig(\ref{fig:GHZ_circ}).
 The result is a full entanglement, as seen in Fig(\ref{fig:qshpere}), where the outcome of any measurement on any qbit, will ascertain the outcome of all other measurements, as shown in Fig(\ref{fig:GHZ_measure}).
-\begin{figure}
+\begin{figure}[H]
     \centering
     \begin{subfigure}{0.48\textwidth}
         \includegraphics[width=\textwidth]{figs/GHZ qsphere.png}
@@ -78,6 +78,23 @@ The result is a full entanglement, as seen in Fig(\ref{fig:qshpere}), where the 
         \label{fig:GHZ_measure}
     \end{subfigure}
 \end{figure}
+Another important set of gates are the \textit{rotation operators} $R_x, R_y$ and $R_z$. By application to a qbit, we can reach any point on the Bloch sphere by usage of all three once. They are expressed as
+\begin{align}
+    \begin{split}
+        R_x(\theta) &= \exp{-iX\theta/2} = \begin{pmatrix}
+            \cos(\theta/2) & -i\sin(\theta/2) \\
+            -i\sin(\theta/2) & \cos(\theta/2)
+        \end{pmatrix}, \\
+        R_y(\theta) &= \exp{-iY\theta/2} = \begin{pmatrix}
+            \cos(\theta/2) & -\sin(\theta/2) \\
+            -\sin(\theta/2) & \cos(\theta/2)
+        \end{pmatrix}, \\
+        R_z(\theta) &= \exp{-iZ\theta/2} = \begin{pmatrix}
+            \exp{-i\theta/2} & 0 \\
+            0 & \exp{i\theta/2}
+        \end{pmatrix}
+    \end{split}\label[eq]{eq:theo:bloch_rotations}
+\end{align}
 
 \subsection{Pauli Encoding Hamiltonians}
 To apply a specific system to VQE, the Hamiltonian must be re-written in terms of a sum of \textit{Pauli strings}. Considering the identity $I$ and the three Pauli matrices $X, Y, Z$, we construct a specific term as a tensor product of these $P_i$. For an $n$-qubit system, we require $n-1$ tensor products. Combined with a weight $w_i$, the Hamiltonian must be written in the from
@@ -100,14 +117,14 @@ The ansatz is typically chosen to be a parameterized superposition of basis stat
 This is a crucial method in many-body theory, where good estimates of ground state energies are crucial due to the lack of analytical solutions. In contrast to perturbation theory, the VM will not give too small ground state energies, assuming that the ansatz has some overlap with the true ground state. The VM machinery form the basis of the VQE. 
 
 \subsubsection{Algorithm}
-We wish to apply the VM to estimate the ground state energy of a Hamiltonian on a quantum computer. To have any flexibility in the ansatz $\ket{A}$, we need to allow for parametrization. The most common approach is the so-called $RY$ ansatz, where we apply chained operations of rotating around the $y$-axis by $\boldsymbol{\theta} = (\theta_1,\ldots,\theta_Q)$ of the Bloch sphere and CNOT operations. Applications of $y$ rotations specifically ensures that our coefficients always remain real, which often is satisfactory when dealing with many-body systems. \comment{Hadde det gått å laget et plot som \url{https://i.stack.imgur.com/740xL.png} i qiskit?}
+We wish to apply the VM to estimate the ground state energy of a Hamiltonian on a quantum computer. To have any flexibility in the ansatz $\ket{A}$, we need to allow for parametrization. The most common approach is the so-called $RY$ ansatz, where we apply chained operations of rotating around the $y$-axis (\cref{eq:theo:bloch_rotations}) by $\boldsymbol{\theta} = (\theta_1,\ldots,\theta_Q)$ of the Bloch sphere and CNOT operations (\cref{eq:theo:CNOT_Hadamard}). Applications of $y$ rotations specifically ensures that our coefficients always remain real, which often is satisfactory when dealing with many-body systems. \comment{Hadde det gått å laget et plot som \url{https://i.stack.imgur.com/740xL.png} i qiskit?}
 
 After the ansatz construction has been performed, the Hamiltonian must be applied. As discussed, the Hamiltonian must be written in terms of Pauli strings such that it is expressible as \cref{eq:theo:pauli_encoding_general}. To obtain the expectation value of the ground state energy, one can measure the expectation value of each Pauli string,
 
 \begin{align*}
     E(\boldsymbol{\theta}) = \sum_i w_i\bra{A(\boldsymbol{\theta})} P_i \ket{A(\boldsymbol{\theta})} \equiv \sum_i w_i f_i,
 \end{align*}
-where $f_i$ is the expectation value of the Pauli string $i$. This is estimated statistically by considering measurements in the appropriate basis of the operator in the Pauli string. If the $P_i \supseteq Z_1$ we simply subtract the $0$ and $1$ outcomes of the first qbit, averaged over all measurements. If however we also have $P_i \supseteq X_2$, the second qbits measurement must be taken along the $x$-axis. This with $N_0$ and $N_1$ as the number of $0$ and $1$ measurements respectively, we can estimate $f_i$ since 
+where $f_i$ is the expectation value of the Pauli string $i$. This is estimated statistically by considering measurements in the appropriate basis of the operator in the Pauli string. If the $P_i \supseteq Z_1$ we simply subtract the $0$ and $1$ outcomes of the first qbit, averaged over all measurements. If however we also have $P_i \supseteq X_2$, the second qbits measurement must be taken along the $x$-axis\footnote{To do this, we must must transform the qbit from the Pauli $z$-basis to the Pauli $x$-basis by application of a Hadamard gate.}. This with $N_0$ and $N_1$ as the number of $0$ and $1$ measurements respectively, we can estimate $f_i$ since 
 \begin{align*}
     f_i = \lim_{N \to \infty} \frac{N_0 - N_1}{N},
 \end{align*}
