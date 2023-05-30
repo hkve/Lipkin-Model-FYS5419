@@ -18,11 +18,14 @@ Further research could look into other methods of optimization, other than the V
 While the VQE is primarily focused on energy estimation, it can also yield approximate estimates for other observables, especially if they are closely related to the energy. This is because the optimized trial state tends to capture some aspects of the true state, which can influence the values of other observables. However, the accuracy of these estimates may vary depending on the specific system and observable of interest.
 
 \subsection{Lipkin Model}
+From \cref{fig:res:Lipkin_N2_vary_v} we see good agreement between diagonalization and VQE. There were little trouble with convergence and precise results were obtained after just 30 iterations. The variability between runs were also minuscule, except when running for less than 30 iterations. It is also clear that VQE beats both HF and RPA consistently for the range of interaction strengths. 
+
+Moving on to the four particle case from \cref{fig:res:Lipkin_N4_vary_v}, the precision of the results decreases. The two qbit scheme making use of the $W=0$ symmetry still shows excellent agreement with the diagonalization, but the larger four qbit scheme performs worse. This was the case despite increasing the number of iterations to 1000. Still, the four qbit results outperformed both HF and RPA for all except two interaction strengths, but showed some variability in results across identical runs. We hypothesize multiple reasons for this. Firstly, the number of Pauli string from \cref{eq:met:lipkin_N4_dumb} is 16 compared to the encoding from \cref{eq:met:lipkin_N4_smart_hamiltonian} only containing 6. We are therefor reliant on good estimates of Pauli string expectation values for more terms. If one or more of these estimates are poor for one iteration, the gradient estimate or the energy evaluation itself could be erroneously, resulting in slower converge. Intertwined with this is the sice of the parameter space which is twice as large for the four qbit case. Optimization here is harder and could hinder the convergence of the VQE. The $RY$ ansatz could of course also be too naive, restricting to only real amplitudes. Various different approaches are present in the literature, for instance the popular Unitary Coupled Cluster \citep{peruzzoVariationalEigenvalueSolver2014} being one of the gold standards in quantum chemistry. 
 \begin{itemize}
-    \item Good correspondence for two qbit calculations. Beating both RPA and HF 
-    \item Four qbits vary more. Can get differing results across runs \begin{itemize}
-        \item More possible outcomes of measurements
-        \item Harder to optimize due to larger parameter space. More interactions required?
+    \item \st{Good correspondence for two qbit calculations. Beating both RPA and HF} 
+    \item \st{Four qbits vary more. Can get differing results across runs} \begin{itemize}
+        \item \st{More possible outcomes of measurements}
+        \item \st{Harder to optimize due to larger parameter space. More interactions required?}
     \end{itemize}  
     \item Also takes longer (due to more qbits). Emphasize using identities to shorten Pauli strings.
     \item Using the $W=0$ symmetry is good for four particles. Spending time on rewriting with symmetries in mind is a good idea. 

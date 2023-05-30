@@ -28,8 +28,11 @@ def run_lipkin_VQE(v, w, N=4, maxiter=1000, force_nq_scheme=None, initial_point=
 
     result = vqe.compute_minimum_eigenvalue(operator=hamiltonian)
     
-    return  result.optimal_value, result.optimal_point
-
+    if initial_point:
+        return  result.optimal_value, result.optimal_point
+    else:
+        return result.optimal_value
+    
 def run_lipkin_DIAG(v, w, N=4):
     H = lipkin_utils.get_hamiltonian_matrix(v, w, N)
     E, C = np.linalg.eigh(H)
@@ -88,8 +91,8 @@ def plot_v_vs_E(N=4):
 
 def plot_diff_heatmap(N=4, load=False, filename="test", method="VQE", vocal=False):
     n_pts = 50
-    v_range = np.linspace(0,2, n_pts)
-    w_range = np.linspace(0,2, n_pts)
+    v_range = np.linspace(0,1, n_pts)
+    w_range = np.linspace(0,1, n_pts)
 
     run_lipkin_get_E = {
         "HF": run_HF,
@@ -107,12 +110,9 @@ def plot_diff_heatmap(N=4, load=False, filename="test", method="VQE", vocal=Fals
             for j in range(n_pts):
                 v, w = v_grid[i, j], w_grid[i,j]
                 E_exact[i,j] = run_lipkin_DIAG(v, w, N=N)
-                if method == "VQE":
-                    E_calc[i,j], pt = run_lipkin_get_E[method](v, w, N=N, initial_point=pt)
-                else:
-                    E_calc[i,j] = run_lipkin_get_E[method](v, w, N=N)
+                E_calc[i,j] = run_lipkin_get_E[method](v, w, N=N)
                 if vocal:
-                    print(f"done {(j+1) + i*n_pts}, {v = }, {w = }")
+                    print(f"done {(j+1) + i*n_pts}, {v = :.4f}, {w = :.4f}, diff = {np.abs(E_exact[i,j]-E_calc[i,j])}")
             
         with open(f"{filename}.npy", "wb") as file:
             np.save(file, v_grid)
@@ -130,15 +130,21 @@ def plot_diff_heatmap(N=4, load=False, filename="test", method="VQE", vocal=Fals
     diff = np.abs((E_exact - E_calc)/E_exact) * 100
 
     fig, ax = plt.subplots()
-    cs = ax.contourf(v_grid, w_grid, diff)
-    cbar = fig.colorbar(cs, ax=ax)
+    cnt = ax.contourf(v_grid, w_grid, diff, levels=np.linspace(0,100,100, endpoint=True))
+    cbar = fig.colorbar(cnt, ax=ax)
+
+    for c in cnt.collections:
+        c.set_edgecolor("face")
+
     cbar.set_label(rf"{method} \% relative error", rotation=90)
+    cbar.set_ticks(cbar.get_ticks().astype(int))
     ax.set(xlabel=r"$V/\epsilon$", ylabel=r"$W/\epsilon$")
     plot_utils.save(filename)
     plt.show()
+
 if __name__ == '__main__':
     # plot_v_vs_E(N=2)
-    plot_v_vs_E(N=4)
-    # plot_diff_heatmap(load=False, filename="50pts_vw_grid", vocal=True)
+    # plot_v_vs_E(N=4)
+    plot_diff_heatmap(load=False, filename="50pts_vw_grid_VQE", vocal=True)
     # plot_diff_heatmap(method="HF", filename="50pts_vw_grid_HF")
     # plot_diff_heatmap(method="RPA", filename="50pts_vw_grid_RPA")
