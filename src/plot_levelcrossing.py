@@ -26,6 +26,7 @@ def solve(n=1000):
     C1s, C2s  = np.zeros_like(Es), np.zeros_like(Es)
     for i, lmd_ in enumerate(lambdas):
         H_ = H0 + lmd_*H1
+
         eig_val, eig_vec = np.linalg.eigh(H_)
         Es[i,:] = eig_val
         C1s[i,:] = eig_vec[:,0]
@@ -43,7 +44,7 @@ def plot(lambdas, E1, E2, C_abs_E1, C_abs_E2):
     sm.set_array(np.linspace(0,1,100))
     cbar = plt.colorbar(sm)
     cbar.set_label(r"$|C_0|^2$")
-    ax.set(xlabel=r"$\lambda$", ylabel="E [magic]")
+    ax.set(xlabel=r"$\lambda$", ylabel="E")
     axins = zoomed_inset_axes(ax, 1.7, loc="center left")
     
     axins.spines['left'].set_edgecolor("0.5")
