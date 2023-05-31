@@ -1,3 +1,4 @@
+\label{sec:qc}
 \subsection{Notation}
 The basic building block of a QC is the \textit{qbit}. Resembling the binary representation in CC, the qbit is defined as a two-level system. In the canonical/standard/Pauli basis, we express the basis states as
 \begin{align*}
@@ -118,8 +119,8 @@ The ansatz is typically chosen to be a parameterized superposition of basis stat
 This is a crucial method in many-body theory, where good estimates of ground state energies are crucial due to the lack of analytical solutions. In contrast to perturbation theory, the VM will not give too small ground state energies, assuming that the ansatz has some overlap with the true ground state. The VM machinery form the basis of the VQE. 
 
 \subsubsection{Algorithm}
-We wish to apply the VM to estimate the ground state energy of a Hamiltonian on a quantum computer. To have any flexibility in the ansatz $\ket{A}$, we need to allow for parametrization. The most common approach is the so-called $RY$ ansatz, where we apply chained operations of rotating around the $y$-axis (\cref{eq:theo:bloch_rotations}) by $\boldsymbol{\theta} = (\theta_1,\ldots,\theta_Q)$ of the Bloch sphere and CNOT operations (\cref{eq:theo:CNOT_Hadamard}). Applications of $y$ rotations specifically ensures that our coefficients always remain real, which often is satisfactory when dealing with many-body systems. \comment{Hadde det gått å laget et plot som \url{https://i.stack.imgur.com/740xL.png} i qiskit?}
-
+We wish to apply the VM to estimate the ground state energy of a Hamiltonian on a quantum computer. To have any flexibility in the ansatz $\ket{A}$, we need to allow for parametrization. The most common approach is the so-called $RY$ ansatz, where we apply chained operations of rotating around the $y$-axis (\cref{eq:theo:bloch_rotations}) by $\boldsymbol{\theta} = (\theta_1,\ldots,\theta_Q)$ of the Bloch sphere and CNOT operations (\cref{eq:theo:CNOT_Hadamard}). Applications of $y$ rotations specifically ensures that our coefficients always remain real, which often is satisfactory when dealing with many-body systems. 
+\newline
 After the ansatz construction has been performed, the Hamiltonian must be applied. As discussed, the Hamiltonian must be written in terms of Pauli strings such that it is expressible as \cref{eq:theo:pauli_encoding_general}. To obtain the expectation value of the ground state energy, one can measure the expectation value of each Pauli string,
 
 \begin{align*}
@@ -134,14 +135,8 @@ with $N$ as the number of shots (measurements). Therefor each Pauli string requi
 \begin{align}
     \nabla_{\boldsymbol{\theta}} E(\boldsymbol{\theta}) \approx \frac{E(\boldsymbol{\theta} + \delta \boldsymbol{\theta})-E(\boldsymbol{\theta} - \delta \boldsymbol{\theta})}{2\delta \theta} ,
 \end{align}
-where $\delta \boldsymbol{\theta} = (\delta \theta, \ldots, \delta \theta)$. By updating the previous $\boldsymbol{\theta}$ values with some scalar times the negative of the gradient estimate, a new set of $\boldsymbol{\theta}$ values are obtained. The process is then repeated a finite amount of steps, where we hope to converge to the global minimum. A schematic of the procedure is presented in \cref{fig:VQE_scheme}
+where $\delta \boldsymbol{\theta} = (\delta \theta, \ldots, \delta \theta)$. By updating the previous $\boldsymbol{\theta}$ values with some scalar times the negative of the gradient estimate, a new set of $\boldsymbol{\theta}$ values are obtained. The process is then repeated a finite amount of steps, where we hope to converge to the global minimum. A schematic of the procedure is presented in \cref{fig:VQE_scheme}. \newline An essential facet to this problem is the choice of an ansatz which will achieve a varied initial state, that can be altered through the optimization, furthering searches for better initial states. The ansatz used in this paper is shown in Fig(\ref{fig:ansatz}), and is taken from the article by Hlatshwayo et al. \cite{hlatshwayoSimulatingExcitedStates2022}
 
-\noindent\rule{8.8cm}{0.8pt}
-The Variational Quantum Eigensolver(VQE) takes on applying the Variational Principle, described above, minimizing the energy of 
-\begin{equation}\label{VQE}
-    E_{temp} = \frac{\bra{a}\boldsymbol{H}\ket{a}}{\braket{a}}
-\end{equation}
-with regards to altering the state $\ket{a}$. This is achieved by applying an ansatz to the initial state, in order to get an output eigenvalue, which further can be minimized. The ansatz takes \textit{n} Quantum Bits (qbits) and \textit{n} free parameters, $\theta_i$. The goal of the algorithm is to alter the parameters $\theta_i$ in order to achieve the optimal the minimal energy of the system, as computed in Eq. (\ref{VQE}). A schematic of the process is shown in Fig(\ref{fig:VQE_scheme}). The ansatz conjectured by Hlatshwayo et al. \cite{} is shown in Fig. (\ref{fig:ansatz}). 
 \begin{figure}[H]
     \centering
     \includegraphics[width=\linewidth]{figs/VQE.PNG}

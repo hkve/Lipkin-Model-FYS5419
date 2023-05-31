@@ -1,3 +1,4 @@
+\label{sec:qs}
 This section will introduce the three relevant systems for this work. Initially we will look at two `toy models`, being $2\times2$ and $4 \times 4$ real Hamiltonians with arbitrary entries. Lastly the Lipkin model will be used, showing many of the key features of many-body systems while still being analytically solvable.   
 
 \subsection{$H \in \mathbb{R}^2$ Hamiltonian}
@@ -189,7 +190,7 @@ Which is quite a mouthful. If we set $W = 0$, reductions of the problem can be p
 \end{align}
 This will be more computationally efficient due to requiring only half the qbits of \cref{eq:met:lipkin_N4_dumb}. Both sche
 
-\section{Calculating density matrices}
+\subsection{Calculating density matrices}
 Given a Hamiltonian consisting of a non- and an interacting Hamiltonian on a two qubit state, a state will have eigenvectors with coefficients $\alpha_{ij}$. For a Hamiltonian, which in matrix form has $4\times 4$ dimension, there will be four sets of eigenvectors, given a representation of the states in the form
 \begin{align}
     \ket{00} = \begin{pmatrix}1& 0 & 0 & 0
@@ -203,19 +204,19 @@ Given a Hamiltonian consisting of a non- and an interacting Hamiltonian on a two
 \end{align}
 The resulting density matrix, will be the outer product of each of these eigenstates of the Hamiltonian. The density matrix can be decomposed into partial density matrices describing the separate Hilbert space of one of the qubits, by partially tracing over the other qubit. This is done in the below calculation.
 \begin{align}
-        &\rho = \alpha_{00} \ket{00}\bra{00} + \alpha_{01} \ket{01}\bra{01} + \alpha_{10} \ket{10}\bra{10} + \alpha_{11} \ket{11}\bra{11} \\ 
-        \rho_A = T&r_B(\rho)  = \big(\boldsymbol{I}\otimes \bra{\psi}\big)\, \rho \big( \boldsymbol{I}\otimes \ket{\psi}\big) \quad \rho_B = Tr_A(\rho)  = \big(\bra{\psi}\otimes \boldsymbol{I}\big)\, \rho \big(\ket{\psi}\otimes \boldsymbol{I}\big) 
+        \rho = \alpha_{00} \ket{00}\bra{00} &+ \alpha_{01} \ket{01}\bra{01} + \alpha_{10} \ket{10}\bra{10}\nonumber\\ &+ \alpha_{11} \ket{11}\bra{11} \nonumber\\ 
+        \rho_A = Tr_B(\rho)  &= \big(\boldsymbol{I}\otimes \bra{\psi}\big)\, \rho \big( \boldsymbol{I}\otimes \ket{\psi}\big) \nonumber\\ \rho_B = Tr_A(\rho)  &= \big(\bra{\psi}\otimes \boldsymbol{I}\big)\, \rho \big(\ket{\psi}\otimes \boldsymbol{I}\big) \nonumber
 \end{align}
 With the state $\ket{\psi} = \frac{1}{\sqrt{2}} (\ket{0} + \ket{1})$, the resulting reduced density matrix $\rho_A$ and $\rho_B$ is
 \begin{align}
-    \rho_A &= \frac{1}{2} \Big( \alpha_{00} \ket{0}\bra{0} + \alpha_{01} \ket{0}\bra{0} + \alpha_{10} \ket{1}\bra{1} + \alpha_{11} \ket{1}\bra{1}    \Big) \\ 
-    &= \frac{1}{2} \Big(\big(\alpha_{00}+\alpha_{01}\big)\ket{0}\bra{0} + \big(\alpha_{10}+\alpha_{11}\big)\ket{1}\bra{1}\Big) \\
-    \rho_B &= \frac{1}{2 } \Big( \alpha_{00} \ket{0}\bra{0} + \alpha_{01} \ket{1}\bra{1} + \alpha_{10} \ket{0}\bra{0} + \alpha_{11} \ket{1}\bra{1}\Big)\\
+    \rho_A &= \frac{1}{2} \Big( \alpha_{00} \ket{0}\bra{0} + \alpha_{01} \ket{0}\bra{0} + \alpha_{10} \ket{1}\bra{1} + \alpha_{11} \ket{1}\bra{1}    \Big)\nonumber \\ 
+    &= \frac{1}{2} \Big(\big(\alpha_{00}+\alpha_{01}\big)\ket{0}\bra{0} + \big(\alpha_{10}+\alpha_{11}\big)\ket{1}\bra{1}\Big)\label{eq:rho_a} \\
+    \rho_B &= \frac{1}{2 } \Big( \alpha_{00} \ket{0}\bra{0} + \alpha_{01} \ket{1}\bra{1} + \alpha_{10} \ket{0}\bra{0} + \alpha_{11} \ket{1}\bra{1}\Big)\nonumber\\
     &= \frac{1}{2} \Big(\big(\alpha_{00}+\alpha_{10}\big)\ket{0}\bra{0} + \big(\alpha_{01}+\alpha_{11}\big)\ket{1}\bra{1}\Big)
 \end{align}
-The von-Neumann entanglement entropy is defined by the trace of the product between the density matrix and the logarithm of the density matrix, as follows
+The von Neumann entanglement entropy is defined by the trace of the product between the reduced density matrix and the logarithm of the reduced density matrix. Using Eq. (\ref{eq:rho_a}) we get 
 \begin{align}
-    S(\rho_i) &= - Tr\Big(\rho_i \ln \rho_i\Big) \\
-    \implies S(\rho_a)& = \frac{\ln2}{2}\Big(\alpha_{00}+\alpha_{10}\big) \times \big(\alpha_{01}+\alpha_{11}\big)\Big)\\ \times&\ln\big(\alpha_{00}+\alpha_{10}\big) \times\ln \big(\alpha_{01}+\alpha_{11}\big) \nonumber
+    S(\rho_i) =& - Tr\Big(\rho_i \ln \rho_i\Big) \\
+    \implies S(\rho_a) =& \frac{\ln2}{2}\Big(\alpha_{00}+\alpha_{10}\big) \times \big(\alpha_{01}+\alpha_{11}\big)\Big)\\ &\times\ln\big(\alpha_{00}+\alpha_{10}\big) \times\ln \big(\alpha_{01}+\alpha_{11}\big) \nonumber
 \end{align}
-It quantizes the entanglement between the two separate Hilbert spaces. The maximal entropy for a two qubit mixed state, will be $\ln 2$, that of a Bell state. This leads to a possible visualization of the entanglement von Neumann entropy as a metric of the probability of achieving a Bell state, given a mixed state, normmalized by $\ln 2$.
+It quantizes the entanglement between the two separate Hilbert spaces. The maximal entropy for a two qubit mixed state, will be $\ln 2$, that of a Bell state. This leads to a possible visualization of the entanglement von Neumann entropy as a metric of the "probability" of achieving a Bell state, given a mixed state, normalized by $\ln 2$. This generalizes for more qubits, it is a measure of the "probability" of achieving maximally entangled states. 

@@ -1,18 +1,41 @@
+\label{sec:discussion}
 \subsection{Toy models}
 Going back to \cref{fig:res:changing_character} we see the classical example of level crossing in two-level systems. The phenomenon gets its name because in a plot of energy versus interaction strength, the energy levels appear to cross or avoid crossing each other, depending on the specific parameters and interactions involved, as seen. Taking a look at the coefficients, we see that for small interaction strengths $\lambda$, the ground state and excited state are almost purely dominated by $\ket{0}$ and $\ket{1}$ respectively. Increasing $\lambda$, the domination is less and less present. This continues until we reach $\lambda = 2/3$, where the ground state energy is maximal and excitation energy minimal. Moving past  $\lambda = 2/3$ results in the ground state being dominated by $\ket{1}$ and the excited state by $\ket{0}$, meaning that the states has change or swapped character.
 
-
+\subsection{Entropy}
 \begin{figure}
     \centering
-    \includegraphics[scale=0.4]{figs/Eig_lmd.pdf}
-    \caption{Caption}
+    \includegraphics[scale=0.5]{figs/Eig_lmd.pdf}
+    \caption{The eigenvalues of the interaction and non-interaction Hamiltonian, as a function of connection strength $\lambda$.}
     \label{fig:eig_lmd}
 \end{figure}
-The entropy in Fig. (\ref{fig:entropy}) has an initial contribution which increases slower, before taking a leap for a connection strength of $\lambda \approx 0.4$. This is probably a jump corresponding to a system being slightly interacting into being entangled. The entanglement further increases before converging around $\lambda \approx 1.3$. Studying Fig(\ref{fig:eig_lmd} Overlap) we can extract some information, seeing as the first jump is correlated with the eigenvalues of the interaction Hamiltonian overcoming the second lowest eigenvalues. The convergence can be interpreted as the interaction energy overcoming the higher eigenvalues of the non-interaction Hamiltonian.
-\newline\newline
+\begin{figure}
+    \centering
+    \begin{subfigure}[b]{\linewidth}
+        \includegraphics[width=\linewidth]{figs/RDM_0.3.PNG}
+        \caption{The reduced density matrix of $\rho_a$ and $\rho_b$ for a interaction strength of $\lambda=0.3$}
+         \label[fig]{fig:state_bois_1}
+    \end{subfigure}
+    \begin{subfigure}[b]{\linewidth}
+        \includegraphics[width=\linewidth]{figs/RDM_0.5.PNG}
+        \caption{The reduced density matrix of $\rho_a$ and $\rho_b$ for a interction strength of $\lambda=0.5$}
+        \label[fig]{fig:state_bois_2}
 
-The decision of the ansatz in Fig. (\ref{fig:ansatz}) seems a bit arbitrary, but is based on the ansatz in Hlatshwayo et al. (\cite{hlatshwayoSimulatingExcitedStates2022}). There could be possibilities in optimization by choosing a different ansatz. This would be a section of further research by delving into a review of VQE by Tilly et al. (\cite{VQE_review}). \newline 
-Further research could look into other methods of optimization, other than the VQE algorithm, as it is a fairly simple model with restricted applicability. It could probably be extended to solving other optimization problems with minor tweaks or clever encoding. The Lipkin model is fairly limited when it comes to QC. This is a result of the angular momentum operators $j_+$ and $j_-$ are not unitary and thus not applicable to general QC. Thus other models could be further researched in order to not simplify the Hamiltonian by non-unitarity. These models become fairly complex quickly and involves heavier computational costs in order to construct and optimize. \comment{Mangler litt idé om fler ting å kunne ta opp her.} 
+    \end{subfigure}
+    
+\end{figure}
+
+The entropy in Fig. (\ref{fig:entropy}) has an initial contribution which increases slower, before taking a leap for a connection strength of $\lambda \approx 0.4$. This is probably a jump corresponding to a system being slightly interacting into being entangled. The entanglement further increases before converging around $\lambda \approx 1.3$. Studying Fig(\ref{fig:eig_lmd}) we can extract some information, seeing as the first jump is correlated with the eigenvalues of the interaction Hamiltonian overcoming the second lowest eigenvalues. The convergence can be interpreted as the interaction energy overcoming the higher eigenvalues of the non-interaction Hamiltonian.
+\newline\newline
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{figs/bloch_entropy_lmd_2.PNG}
+    \caption{The Bloch-spheres of the two qubits given $\lambda = 2$. }
+    \label{fig:bloch_entropy}
+\end{figure}
+From Figs. (\ref{fig:state_bois1}) and (\ref{fig:state_bois_2}) the situation of the first spike in increased entropy from Fig. (\ref{fig:entropy}) is visualized through the diagonal of the reduced density matrices of the two sub-systems. It is apparent that there occurs a switch around $\lambda = 0.4$ where the reduced density matrices swaps from being in the state $$\rho_a(\lambda = 0.3) = c_1 \ket{0}\bra{0} \xrightarrow{} \rho_a(\lambda = 0.5) = c_2 \ket{1}\bra{1}$$
+There is a similar occurence in the reduced density matrix  of $\rho_b$. These are not pure states, implicated by the trace of the diagonal, but the system of $\rho_a$ is more diagonalized, which makes it stricter in the outcomes of its entanglement, whereas $\rho_b$ has low occurrences along the diagonal, implicating that there are larger mixtures of states, which is more ideal for entanglement. Thus implicating the higher entropy for $\rho_b$ in Fig. (\ref{fig:entropy}). This is further emphasized when studying Fig(\ref{fig:bloch_entropy}). Here the connection strength dominates, which is indicated by the "weak" amplitude of the density matrices of the two states, which implies a superposition of states. These have higher entanglement than pure states which have amplitudes on the vectors stretching to the sphere. \newline\newline
+
 
 \subsection{Lipkin Model}
 From \cref{fig:res:Lipkin_N2_vary_v} we see good agreement between diagonalization and VQE. There were little trouble with convergence and precise results were obtained after just 30 iterations. The variability between runs were also minuscule, except when running for less than 30 iterations. It is also clear that VQE beats both HF and RPA consistently for the range of interaction strengths. 
@@ -36,4 +59,8 @@ Moving forward, calculations of other observable than the energy for ground stat
     \item \st{Comment on general usable regions for $W/V$}
     \item \st{Comment on the "holes". Hinting to more optimization required. However still classical optimizer.} 
     \item \st{Compare with HF/RPA. Here the "beating" is less clear.}
+    
+\subsection{Future research}
+The decision of the ansatz in Fig. (\ref{fig:ansatz}) seems a bit arbitrary, but is based on the ansatz in Hlatshwayo et al. (\cite{hlatshwayoSimulatingExcitedStates2022}). There could be possibilities in optimization by choosing a different ansatz. This would be a section of further research by delving into a review of VQE by Tilly et al. (\cite{VQE_review}). \comment{Dette har du noe om i Lipkin, gjerne fjern dette, likte bare kilden. }\newline 
+Further research could look into other methods of optimization, other than the VQE algorithm, as it is a fairly simple model with restricted applicability. It could probably be extended to solving other optimization problems with minor tweaks or clever encoding. The Lipkin model is fairly limited when it comes to QC. This is a result of the angular momentum operators $j_+$ and $j_-$ are not unitary and thus not applicable to general QC. Thus other models could be further researched in order to not simplify the Hamiltonian by non-unitarity. These models become fairly complex quickly and involves heavier computational costs in order to construct and optimize. \comment{Mangler litt idé om fler ting å kunne ta opp her.} 
 \end{itemize}
