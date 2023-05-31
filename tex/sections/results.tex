@@ -9,21 +9,22 @@ The energy eigenstates and $\set{\ket{0},\ket{1}}$ coefficients for the $H \in \
     \label[fig]{fig:res:changing_character}
 \end{figure}
 
-\noindent The results of using VQE on the simple 2x2 Hamiltonian is presented in \cref{fig:toy_1}. It is the lower section of \cref{fig:res:changing_character} extracted for comparison with VQE. It correctly predicts the ground state energy for this simple Hamiltonian, verifying the precision of the method for basic usage. This is an essential step in developing the system for more complex Hamiltonians and systems, which follows.
-
-blablba VQE toy 2
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\linewidth]{figs/toy2.pdf}
-    \caption{Energy eigenstates and coefficients of $2 \times 2$ Hamiltonian when varying the interaction strength $\lambda \in [0,1]$. Calculations done using exact diagonalization.}
-    \label[fig]{fig:res:changing_character}
-\end{figure}
+\noindent The results of using VQE on the simple $2 \times 2$ Hamiltonian is presented in \cref{fig:toy_1}. It is the lower section of \cref{fig:res:changing_character} extracted for comparison with VQE. It correctly predicts the ground state energy for this simple Hamiltonian, verifying the precision of the method for basic usage. This is an essential step in developing the system for more complex Hamiltonians and systems, which follows.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=\linewidth]{figs/toy1.pdf}
-    \caption{fjsdkfjksd}
+    \caption{Showing ground state energy of the $2\times 2$ Hamiltonian, calculated using diagonalization and the VQE for $\lambda \in [0,1]$.}\label[fig]{fig:toy_1}
 \end{figure}
+
+The slightly larger $4 \times 4$ Hamiltonian ground state energy calculated using VQE is shown in \cref{fig:res:toy_2}. Again we see a good correspondence between the diagonalization and our VQE calculations.  
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{figs/toy2.pdf}
+    \caption{Showing ground state energy of the $2\times 2$ Hamiltonian, calculated using diagonalization and the VQE for $\lambda \in [0,1]$.}
+    \label[fig]{fig:res:toy_2}
+\end{figure}
+
 
 The entropy of entanglement in the case of the of the Hamiltonian consisting of a interacting and non-interacting between the two states, is presented in Fig. (\ref{fig:entropy}). It is apparent that the entropy of entanglement increases as the connection strength increases. The entropy of entanglement converges when the interaction strength thoroughly dominates the non-interaction contribution.
 
