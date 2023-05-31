@@ -2,6 +2,8 @@
 \subsection{Toy models}
 Going back to \cref{fig:res:changing_character} we see the classical example of level crossing in two-level systems. The phenomenon gets its name because in a plot of energy versus interaction strength, the energy levels appear to cross or avoid crossing each other, depending on the specific parameters and interactions involved, as seen. Taking a look at the coefficients, we see that for small interaction strengths $\lambda$, the ground state and excited state are almost purely dominated by $\ket{0}$ and $\ket{1}$ respectively. Increasing $\lambda$, the domination is less and less present. This continues until we reach $\lambda = 2/3$, where the ground state energy is maximal and excitation energy minimal. Moving past  $\lambda = 2/3$ results in the ground state being dominated by $\ket{1}$ and the excited state by $\ket{0}$, meaning that the states has change or swapped character.
 
+The ground state calculation using the VQE for the two toy models resulted in precise results, as shown in \cref{fig:toy_1} ($2\times 2$) and \cref{fig:res:toy_2} ($4 \times 4$). By optimizing for $\sim 1000$ iterations, the variability across different runs were minuscule. However, for a lower number of iterations, the accuracy for the two qbit systems was in general worse than the single qbit system, as would be expected. These initial tests served as a good benchmark to validate our further Lipkin results.
+
 \subsection{Entropy}
 \begin{figure}
     \centering
