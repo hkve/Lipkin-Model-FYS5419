@@ -5,7 +5,7 @@ import plot_utils
 from mpl_toolkits.axes_grid1.inset_locator import zoomed_inset_axes
 from mpl_toolkits.axes_grid1.inset_locator import mark_inset
 
-def solve():
+def solve(n=1000):
     H0 = np.eye(2)
     E1 = 0; E2 = 4
     H0[0,0] = E1; H0[1,1] = E2
@@ -21,8 +21,6 @@ def solve():
     omega_z = (v11-v22)/2
     omega_x = v12
 
-
-    n = 1000
     lambdas = np.linspace(0,1,n)
     Es = np.zeros((n,2))
     C1s, C2s  = np.zeros_like(Es), np.zeros_like(Es)
@@ -75,7 +73,8 @@ def plot(lambdas, E1, E2, C_abs_E1, C_abs_E2):
 
     
 def main():
-    lambdas, E1, E2, C_abs_E1, C_abs_E2 = solve()
+    n = 1000
+    lambdas, E1, E2, C_abs_E1, C_abs_E2 = solve(n)
 
     plot(lambdas, E1, E2, C_abs_E1, C_abs_E2)
 
