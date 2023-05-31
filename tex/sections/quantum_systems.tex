@@ -152,7 +152,33 @@ For $H_1$ we use the same trick to fill the diagonal, defining $V_+ = (V_{11} + 
     H_I = V_+ I + V_- Z + V_o X
 \end{align*}
 
-Show explicit $2\times 2$ and $4\times 4$ expressions with Pauli matrices.
+For the $4 \ times 4$ case we note that the interacting part of the Hamiltonian \cref{eq:theo:4times4_diagonal_hamiltonian} is already written in terms of Pauli matrices, and no encoding beyond this is necessary. The diagonal however needs to be rewritten. Following the same procedure as the $2 \times 2$ case, we define
+
+\begin{align*}
+    \epsilon_{\pm 0} = \frac{\epsilon_{00}\pm\epsilon_{01}}{2},\hspace{20px}\epsilon_{\pm 1} = \frac{\epsilon_{10}\pm\epsilon_{11}}{2}.
+\end{align*}
+We note that the energies $\epsilon_{00}$ and $\epsilon_{01}$ can be repeated on the diagonal, and the same for $\epsilon_{10}$ and $\epsilon_{11}$
+\begin{align*}
+    D_{0} &= \epsilon_{+0} I\otimes I + \epsilon_{-0} I\otimes Z, \\
+    D_{1} &= \epsilon_{+0} I\otimes I + \epsilon_{-1} I\otimes Z.
+\end{align*}
+One qbit project operators can also be constructed considering $I$ and $Z$ through
+\begin{align*}
+    P_{\pm} = \frac{1}{2}(I \pm Z)
+\end{align*}
+which we expand to the project out the first and last to two elements of $4\times 4$ matrix
+\begin{align*}
+    P_0 = P_+ \otimes I,\hspace{20px}P_0 = P_- \otimes I.
+\end{align*}
+Then by adding $D_0$ and $D_1$, while project out the irrelevant parts, we find
+\begin{align*}
+    H_0 &= P_0 D_0 + P_1 D_1, \\
+    &= \alpha_+ I \otimes I + \alpha_- Z \otimes I + \beta_+ I \otimes Z + \beta_- Z \otimes Z, \\ 
+\end{align*}
+where we have defined
+\begin{align*}
+    \alpha_\pm = \frac{\epsilon_{+0}\pm\epsilon_{+1}}{2}, \hspace{10px} \beta_\pm = \frac{\epsilon_{-0}\pm\epsilon_{-1}}{2}.
+\end{align*}
 \subsubsection{Lipkin Model}
 Using the level mapping from \citep{hlatshwayoSimulatingExcitedStates2022}, the spin operators from \cref{eq:theo:quasi_spin_definitions} can be written using their one-body counterparts 
 \begin{align}
