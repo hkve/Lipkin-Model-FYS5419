@@ -5,18 +5,20 @@
 
 \usepackage{overhead} % Overhead is in a separate file
 
-\title{Hello hello}
+\title{Studying the Efficiency of the Variational Quantum Eigensolver on the Lipkin-Meshkov-Glick Model using Quantum Machine Learning}
 \author{Bendik Selvaag-Hagen, Håkon Kvernmoen}
 
-\date{\today}
+\date{\centerline{\today}}
 
 \begin{document}
 
 \twocolumn[
     \begin{@twocolumnfalse}
         \maketitle
+        \centerline{\text{Github:\space\space \url{https://github.com/hkve/Lipkin-Model-FYS5419/}}}
+        \centerline{\space}
         \begin{abstract}
-        Heiie            
+        A Quantum Mechanical System has a Hamiltonian which takes the system and computes its eigenvalues, corresponding to the systems energies. This is an efficient way of computing the energy of a system, but is computationally hard given an complicated initial state to which one needs to find the lowest energy. This problem is classically solved either by the diagonalization of the Hamiltonian or by the Variational Method. The latter has a numerical application used in Quantum Computing called the Variational Quantum Eigensolver (VQE). Applying the VQE to a simple  2x2 Hamiltonian with a interaction and non-interaction part on one state, we achieve accurately to recreate the analytical solution from the diagonalization with varying interaction strength. Expanding the model to two qubits, the entanglement entropy of the two states is found to increase with increased interaction strength. The diagonalized Hamiltonian still correspond sufficiently to the VQE on the system. Furthermore applying the VQE to the Lipkin-Meshkov-Glick model it is far superior to that of Hartree-Fock and Random Phase Approximation. VQE is deemed to be an accurate approximation to the diagonalized Hamiltonian of the Lipkin model, with no visual deviances for a two qubit system.
         \end{abstract}
     \end{@twocolumnfalse}
 ]
@@ -26,16 +28,16 @@
 \section{Introduction}
 \input{sections/introduction}
 
-\section{Quantum Computing}\label[sec]{sec:qc}
+\section{Quantum Computing}
 \input{sections/quantum_computing}
 
-\section{Quantum Systems}\label[sec]{sec:qs}
+\section{Quantum Systems}
 \input{sections/quantum_systems}
 
-\section{Results}\label[sec]{sec:results}
+\section{Results}
 \input{sections/results}
 
-\section{Discussion}\label[sec]{sec:discussion}
+\section{Discussion}
 \input{sections/discussion}
 
 \section{Concluding remarks} 
@@ -56,4 +58,3 @@
 \bibliography{refs/references}
 
 \end{document}
-
