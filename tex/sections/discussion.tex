@@ -5,7 +5,7 @@ Going back to \cref{fig:res:changing_character} we see the classical example of 
 \subsection{Entropy}
 \begin{figure}
     \centering
-    \includegraphics[width=\linewidth]{figs/Eig_lmd.pdf}
+    \includegraphics[scale=0.5]{figs/Eig_lmd.pdf}
     \caption{The eigenvalues of the interaction and non-interaction Hamiltonian, as a function of connection strength $\lambda$.}
     \label{fig:eig_lmd}
 \end{figure}
@@ -33,7 +33,7 @@ The entropy in Fig. (\ref{fig:entropy}) has an initial contribution which increa
     \caption{The Bloch-spheres of the two qubits given $\lambda = 2$. }
     \label{fig:bloch_entropy}
 \end{figure}
-From  (\cref{fig:state_bois_1}) and (\cref{fig:state_bois_2}) the situation of the first spike in increased entropy from Fig. (\ref{fig:entropy}) is visualized through the diagonal of the reduced density matrices of the two sub-systems. It is apparent that there occurs a switch around $\lambda = 0.4$ where the reduced density matrices swaps from being in the state $$\rho_a(\lambda = 0.3) = c_1 \ket{0}\bra{0} \xrightarrow{} \rho_a(\lambda = 0.5) = c_2 \ket{1}\bra{1}$$
+From Figs. (\ref{fig:state_bois_1}) and (\ref{fig:state_bois_2}) the situation of the first spike in increased entropy from Fig. (\ref{fig:entropy}) is visualized through the diagonal of the reduced density matrices of the two sub-systems. It is apparent that there occurs a switch around $\lambda = 0.4$ where the reduced density matrices swaps from being in the state $$\rho_a(\lambda = 0.3) = c_1 \ket{0}\bra{0} \xrightarrow{} \rho_a(\lambda = 0.5) = c_2 \ket{1}\bra{1}$$
 There is a similar occurence in the reduced density matrix  of $\rho_b$. These are not pure states, implicated by the trace of the diagonal, but the system of $\rho_a$ is more diagonalized, which makes it stricter in the outcomes of its entanglement, whereas $\rho_b$ has low occurrences along the diagonal, implicating that there are larger mixtures of states, which is more ideal for entanglement. Thus implicating the higher entropy for $\rho_b$ in Fig. (\ref{fig:entropy}). This is further emphasized when studying Fig(\ref{fig:bloch_entropy}). Here the connection strength dominates, which is indicated by the "weak" amplitude of the density matrices of the two states, which implies a superposition of states. These have higher entanglement than pure states which have amplitudes on the vectors stretching to the sphere. \newline\newline
 
 
@@ -48,19 +48,7 @@ When lifting the $W=0$ restriction, such as we saw in \cref{fig:res:lipkin_N4_vw
 The results from \cref{fig:res:lipkin_N4_vw_grid_VQE} are quite perforated, indicating that better results could be achieved by increasing the number of iterations and/or running each set of $(V,W)$ values multiple times. However since we are simulating a QC, simulating repeated VQE calculations for four qbit system for a range of different Hamiltonian would be too time-consuming for this work. Alternatively trying to find new clever ways to rewrite the Pauli strings \cref{eq:met:lipkin_N4_dumb} could be worthwhile, in addition to testing different ansatzes.      
 
 Moving forward, calculations of other observable than the energy for ground state would be interesting. While the VQE is primarily focused on energy estimation, it can also yield approximate estimates for other observables, especially if they are closely related to the energy. This is because the optimized trial state tends to capture some aspects of the true state, which can influence the values of other observables. However, the accuracy of these estimates may vary depending on the specific system and observable of interest.
-\begin{itemize}
-    \item \st{Good correspondence for two qbit calculations. Beating both RPA and HF} 
-    \item \st{Four qbits vary more. Can get differing results across runs} \begin{itemize}
-        \item \st{More possible outcomes of measurements}
-        \item \st{Harder to optimize due to larger parameter space. More interactions required?}
-    \end{itemize}  
-    \item \st{Also takes longer (due to more qbits). Emphasize using identities to shorten Pauli strings}.
-    \item \st{Using the $W=0$ symmetry is good for four particles. Spending time on rewriting with symmetries in mind is a good idea.} 
-    \item \st{Comment on general usable regions for $W/V$}
-    \item \st{Comment on the "holes". Hinting to more optimization required. However still classical optimizer.} 
-    \item \st{Compare with HF/RPA. Here the "beating" is less clear.}
-    
+
 \subsection{Future research}
-The decision of the ansatz in Fig. (\ref{fig:ansatz}) seems a bit arbitrary, but is based on the ansatz in Hlatshwayo et al. (\cite{hlatshwayoSimulatingExcitedStates2022}). There could be possibilities in optimization by choosing a different ansatz. This would be a section of further research by delving into a review of VQE by Tilly et al. (\cite{VQE_review}). \comment{Dette har du noe om i Lipkin, gjerne fjern dette, likte bare kilden. }\newline 
-Further research could look into other methods of optimization, other than the VQE algorithm, as it is a fairly simple model with restricted applicability. It could probably be extended to solving other optimization problems with minor tweaks or clever encoding. The Lipkin model is fairly limited when it comes to QC. This is a result of the angular momentum operators $j_+$ and $j_-$ are not unitary and thus not applicable to general QC. Thus other models could be further researched in order to not simplify the Hamiltonian by non-unitarity. These models become fairly complex quickly and involves heavier computational costs in order to construct and optimize. \comment{Mangler litt idé om fler ting å kunne ta opp her.} 
-\end{itemize}
+The decision of the ansatz in Fig. (\ref{fig:ansatz}) seems a bit arbitrary, but is based on the ansatz in Hlatshwayo et al. (\cite{hlatshwayoSimulatingExcitedStates2022}). There could be possibilities in optimization by choosing a different ansatz. This would be a section of further research by delving into a review of VQE by Tilly et al. (\cite{VQE_review}).\newline 
+Further research could look into other methods of optimization, other than the VQE algorithm, as it is a fairly simple model with restricted applicability. It could probably be extended to solving other optimization problems with minor tweaks or clever encoding. The Lipkin model is fairly limited when it comes to QC. This is a result of the angular momentum operators $j_+$ and $j_-$ are not unitary and thus not applicable to general QC. Thus other models could be further researched in order to not simplify the Hamiltonian by non-unitarity. These models become fairly complex quickly and involves heavier computational costs in order to construct and optimize. 
