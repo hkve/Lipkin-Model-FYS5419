@@ -62,5 +62,6 @@ def get_hamiltonian(v, w, N,force_nq_scheme=False):
                 ("IYYI", t2),
                 ("IYIY", t2),
                 ("IIYY", t2),
+                ("IIII", 1),
             ])
     return hamiltonian

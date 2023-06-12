@@ -507,3 +507,4 @@ pyrightconfig.json
 Sandkasse/
 tex/main.pdf
 tex/.vscode/
+*.npy
