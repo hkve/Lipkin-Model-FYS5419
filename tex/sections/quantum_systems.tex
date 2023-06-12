@@ -152,7 +152,7 @@ For $H_1$ we use the same trick to fill the diagonal, defining $V_+ = (V_{11} + 
     H_I = V_+ I + V_- Z + V_o X
 \end{align*}
 
-For the $4 \ times 4$ case we note that the interacting part of the Hamiltonian \cref{eq:theo:4times4_diagonal_hamiltonian} is already written in terms of Pauli matrices, and no encoding beyond this is necessary. The diagonal however needs to be rewritten. Following the same procedure as the $2 \times 2$ case, we define
+For the $4 \times 4$ case we note that the interacting part of the Hamiltonian \cref{eq:theo:4times4_diagonal_hamiltonian} is already written in terms of Pauli matrices, and no encoding beyond this is necessary. The diagonal however needs to be rewritten. Following the same procedure as the $2 \times 2$ case, we define
 
 \begin{align*}
     \epsilon_{\pm 0} = \frac{\epsilon_{00}\pm\epsilon_{01}}{2},\hspace{20px}\epsilon_{\pm 1} = \frac{\epsilon_{10}\pm\epsilon_{11}}{2}.
@@ -214,7 +214,7 @@ Which is quite a mouthful. If we set $W = 0$, reductions of the problem can be p
 \begin{align}
     H_{W=0}^{N=4} = \epsilon(Z_1 + Z_2) + \frac{\sqrt{6}}{2}V (X_1 + X_2 + Z_1 X_0 - X_1 Z_0). \label[eq]{eq:met:lipkin_N4_smart_hamiltonian}
 \end{align}
-This will be more computationally efficient due to requiring only half the qbits of \cref{eq:met:lipkin_N4_dumb}. Both sche
+This will be more computationally efficient due to requiring only half the qbits of \cref{eq:met:lipkin_N4_dumb}. Both schemes will be applied.
 
 \subsection{Calculating density matrices}
 Given a Hamiltonian consisting of a non- and an interacting Hamiltonian on a two qubit state, a state will have eigenvectors with coefficients $\alpha_{ij}$. For a Hamiltonian, which in matrix form has $4\times 4$ dimension, there will be four sets of eigenvectors, given a representation of the states in the form
@@ -243,6 +243,6 @@ With the state $\ket{\psi} = \frac{1}{\sqrt{2}} (\ket{0} + \ket{1})$, the result
 The von Neumann entanglement entropy is defined by the trace of the product between the reduced density matrix and the logarithm of the reduced density matrix. Using Eq. (\ref{eq:rho_a}) we get 
 \begin{align}
     S(\rho_i) =& - Tr\Big(\rho_i \ln \rho_i\Big) \\
-    \implies S(\rho_a) =& \frac{\ln2}{2}\Big(\alpha_{00}+\alpha_{10}\big) \times \big(\alpha_{01}+\alpha_{11}\big)\Big)\\ &\times\ln\big(\alpha_{00}+\alpha_{10}\big) \times\ln \big(\alpha_{01}+\alpha_{11}\big) \nonumber
+    \implies S(\rho_a) =& \frac{\ln2}{2}\Big((\alpha_{00}+\alpha_{10}\big) \times \big(\alpha_{01}+\alpha_{11}\big)\Big)\\ &\times\ln\big(\alpha_{00}+\alpha_{10}\big) \times\ln \big(\alpha_{01}+\alpha_{11}\big) \nonumber
 \end{align}
 It quantizes the entanglement between the two separate Hilbert spaces. The maximal entropy for a two qubit mixed state, will be $\ln 2$, that of a Bell state. This leads to a possible visualization of the entanglement von Neumann entropy as a metric of the "probability" of achieving a Bell state, given a mixed state, normalized by $\ln 2$. This generalizes for more qubits, it is a measure of the "probability" of achieving maximally entangled states. 
