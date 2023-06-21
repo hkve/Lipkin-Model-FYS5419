@@ -24,9 +24,9 @@ def get_hamiltonian_matrix(v, w, N):
 
 
 def get_hamiltonian(v, w, N,force_nq_scheme=False):
-    sp = -0.5
-    t1 = -0.5*(w+v)
-    t2 = -0.5*(w-v)
+    sp = 0.5
+    t1 = 0.5*(w+v)
+    t2 = 0.5*(w-v)
     if N == 2:
         hamiltonian = PauliSumOp.from_list([
           ("ZI", sp),
@@ -52,16 +52,15 @@ def get_hamiltonian(v, w, N,force_nq_scheme=False):
                 ("IIIZ", sp),
                 ("XXII", t1),
                 ("XIXI", t1),
-                ("XXIX", t1),
+                ("XIIX", t1),
                 ("IXXI", t1),
                 ("IXIX", t1),
                 ("IIXX", t1),
                 ("YYII", t2),
                 ("YIYI", t2),
-                ("YYIY", t2),
+                ("YIIY", t2),
                 ("IYYI", t2),
                 ("IYIY", t2),
                 ("IIYY", t2),
-                ("IIII", 1),
             ])
     return hamiltonian
